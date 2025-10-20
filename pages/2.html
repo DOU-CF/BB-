@@ -252,100 +252,152 @@
           <button class="btn-clear" id="clear-filters">清除全部</button>
         </div>
 
-        <!-- 商品區塊 -->
+        <!-- dropdown 區塊 -->
         <div class="col-9">
-          <div class="row sort-section mb-40">
+          <div class="row mb-40">
             <!-- 空出 4 個欄位（col-4），讓 dropdown 靠右 -->
             <div class="col-4"></div>
 
             <!-- dropdown 區塊佔 col-8，靠右 -->
-            <!-- dropdown 1  -->
-            <div class="col-8 sort-section mb-40 d-flex">
-              <div class="sort-group">
-                <label class="sort-label">狀態</label>
-                <div class="dropdown">
-                  <button
-                    class="dropdown-toggle"
-                    type="button"
-                    data-bs-toggle="dropdown"
-                  >
-                    <span class="sort-text">不指定</span>
-                    <i data-lucide="chevron-down"></i>
-                  </button>
-                  <ul class="dropdown-menu">
-                    <li>
-                      <a
-                        class="dropdown-item active"
-                        href="#"
-                        data-value="default"
-                        >不指定</a
-                      >
-                    </li>
-                    <li>
-                      <a class="dropdown-item" href="#" data-value="brandnew"
-                        >全新</a
-                      >
-                    </li>
-                    <li>
-                      <a class="dropdown-item" href="#" data-value="fairly＿new"
-                        >九成新</a
-                      >
-                    </li>
-                    <li>
-                      <a class="dropdown-item" href="#" data-value="discount"
-                        >七成新以下</a
-                      >
-                    </li>
-                    <li>
-                      <a class="dropdown-item" href="#" data-value="arrival"
-                        >以物易物</a
-                      >
-                    </li>
-                    <li>
-                      <a class="dropdown-item" href="#" data-value="rental"
-                        >可捐贈</a
-                      >
-                    </li>
-                  </ul>
+
+            <!-- <div class="col-8 sort-section mb-40 d-flex"> -->
+            <div class="col-8">
+              <div class="sort-section">
+                <!-- dropdown 1  -->
+                <div class="sort-group">
+                  <label class="sort-label">狀態</label>
+                  <div class="dropdown">
+                    <button
+                      class="dropdown-toggle"
+                      type="button"
+                      data-bs-toggle="dropdown"
+                    >
+                      <span class="sort-text">不指定</span>
+                      <i data-lucide="chevron-down"></i>
+                    </button>
+                    <ul class="dropdown-menu">
+                      <li>
+                        <a
+                          class="dropdown-item active"
+                          href="#"
+                          data-value="default"
+                          >不指定</a
+                        >
+                      </li>
+                      <li>
+                        <a class="dropdown-item" href="#" data-value="brandnew"
+                          >全新</a
+                        >
+                      </li>
+                      <li>
+                        <a
+                          class="dropdown-item"
+                          href="#"
+                          data-value="fairly＿new"
+                          >九成新</a
+                        >
+                      </li>
+                      <li>
+                        <a class="dropdown-item" href="#" data-value="discount"
+                          >七成新以下</a
+                        >
+                      </li>
+                      <li>
+                        <a class="dropdown-item" href="#" data-value="arrival"
+                          >以物易物</a
+                        >
+                      </li>
+                      <li>
+                        <a class="dropdown-item" href="#" data-value="rental"
+                          >可捐贈</a
+                        >
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+
+                <!-- dropdown 2 -->
+                <div class="sort-group">
+                  <label class="sort-label">排序</label>
+                  <div class="dropdown">
+                    <button
+                      class="dropdown-toggle"
+                      type="button"
+                      data-bs-toggle="dropdown"
+                    >
+                      <span class="sort-text">最新上架</span>
+                      <i data-lucide="chevron-down"></i>
+                    </button>
+                    <ul class="dropdown-menu">
+                      <li>
+                        <a class="dropdown-item" href="#" data-value="newest"
+                          >最新上架</a
+                        >
+                      </li>
+                      <li>
+                        <a
+                          class="dropdown-item"
+                          href="#"
+                          data-value="price_low_to_high"
+                          >價格由低到高</a
+                        >
+                      </li>
+                      <li>
+                        <a
+                          class="dropdown-item"
+                          href="#"
+                          data-value="price_high_to_low"
+                          >價格由高到低</a
+                        >
+                      </li>
+                    </ul>
+                  </div>
                 </div>
               </div>
+            </div>
+          </div>
 
-              <!-- dropdown 2 -->
-              <div class="sort-group">
-                <label class="sort-label pe-12">排序</label>
-                <div class="dropdown">
-                  <button
-                    class="dropdown-toggle"
-                    type="button"
-                    data-bs-toggle="dropdown"
-                  >
-                    <span id="sort-text">最新上架</span>
-                    <i data-lucide="chevron-down"></i>
+          <!-- 商品區塊 -->
+          <div class="row mb-160">
+            <div class="col-4">
+              <div class="product-card mb-48">
+                <!-- <a href="product.html"> -->
+                <div class="product-image mb-16">
+                  <div class="badge paragraph-body-small d-flex">
+                    <span class="badge-pink">九成新</span>
+                    <span class="badge-blue">育兒省力神器</span>
+                  </div>
+                  <img
+                    src="../assets/images/products-Images/product08.jpg"
+                    alt="多功能寶寶背巾"
+                    class="mb-16"
+                  />
+                  <button class="favorite-btn" aria-label="收藏">
+                    <i class="lucide" data-lucide="heart"></i>
                   </button>
-                  <ul class="dropdown-menu">
-                    <li>
-                      <a class="dropdown-item" href="#" data-value="newest"
-                        >最新上架</a
-                      >
-                    </li>
-                    <li>
-                      <a
-                        class="dropdown-item"
-                        href="#"
-                        data-value="price_low_to_high"
-                        >價格由低到高</a
-                      >
-                    </li>
-                    <li>
-                      <a
-                        class="dropdown-item"
-                        href="#"
-                        data-value="price_high_to_low"
-                        >價格由高到低</a
-                      >
-                    </li>
-                  </ul>
+
+                  <div class="product-actions d-flex">
+                    <button class="action-btn button" aria-label="分享">
+                      <i class="lucide text-primary-300" data-lucide="send"></i>
+                      <span>分享</span>
+                    </button>
+
+                    <button class="action-btn" aria-label="聊聊">
+                      <i
+                        class="lucide text-primary-300"
+                        data-lucide="message-circle-more"
+                      ></i>
+                      <span>聊聊</span>
+                    </button>
+                  </div>
                 </div>
+
+                <div class="product-info">
+                  <h3 class="h5 mb-8">多功能寶寶背巾</h3>
+                  <p class="paragraph-body-small mb-8">宅配、超商店到店</p>
+                  <p class="h5">NT$1,280</p>
+                </div>
+                <!-- </a> -->
               </div>
             </div>
           </div>
@@ -380,7 +432,10 @@
         item.addEventListener("click", (e) => {
           e.preventDefault();
 
-          // 移除所有 active
+          // ① 移除當前 dropdown 內的 active
+          siblings.forEach((i) => i.classList.remove("active"));
+
+          // ② 移除所有 dropdown 的 active
           dropdownItems.forEach((i) => i.classList.remove("active"));
 
           // 加上當前選中的 active
@@ -412,6 +467,15 @@
           if (selectedSort) selectedSort.textContent = "不指定";
         });
       }
+
+      // 選取全部收藏按鈕
+      const buttons = document.querySelectorAll(".favorite-btn");
+
+      buttons.forEach((btn) => {
+        btn.addEventListener("click", function () {
+          this.classList.toggle("active");
+        });
+      });
     </script>
   </body>
 </html>

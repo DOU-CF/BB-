@@ -618,6 +618,20 @@ input[type="checkbox"]:checked::after {
   stroke-width: 2.5;
 }
 
+.filter-option .h5 {
+  margin: 0;
+}
+
+.filter-option .lucide {
+  flex-shrink: 0;
+  display: flex;
+}
+
+.option-title h3 {
+  margin: 0;
+  line-height: 1.2;
+}
+
 /* 價格範圍區塊 */
 .price-inputs {
   display: flex;

@@ -200,7 +200,7 @@ a {
 }
 
 body {
-  background-color: var(--gray-400);
+  background-color: var(--gray-100);
 }
 
 /* 通用樣式 */
@@ -309,6 +309,13 @@ body {
   letter-spacing: 0;
 }
 
+.h3 {
+  font-weight: 700;
+  font-size: 28px;
+  line-height: 1.2;
+  letter-spacing: 0;
+}
+
 .button {
   font-weight: 400;
   font-size: 16px;
@@ -342,9 +349,6 @@ body {
 }
 
 /* 文字顏色通用樣式 */
-.text-white {
-  color: var(--neutral-0);
-}
 
 .text-neutral-600 {
   color: var(--neutral-600);
@@ -374,6 +378,9 @@ body {
 .pt-120 {
   padding-top: 120px;
 }
+.pt-83 {
+  padding-top: 83px;
+}
 .pb-24 {
   padding-bottom: 24px;
 }
@@ -390,6 +397,9 @@ body {
 
 .mb-24 {
   margin-bottom: 24px;
+}
+.mb-32 {
+  margin-bottom: 32px;
 }
 .mb-8 {
   margin-bottom: 8px;
@@ -452,7 +462,7 @@ body {
   margin-right: 12px;
 }
 .banner {
-  position: relative;
+  /* position: relative; */
   height: 808px;
   overflow: hidden;
 }
@@ -464,6 +474,9 @@ body {
   filter: blur(10px);
   opacity: 0.5;
   transform: scale(1.05);
+}
+.container .banner_product_ad {
+  position: relative;
 }
 
 .banner_product_ad {
@@ -499,29 +512,71 @@ body {
   padding-right: 8px;
 }
 
+.category-list label {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  gap: 8px;
+}
+
+/* Checkbox 與文字水平對齊 */
+.category-list input[type="checkbox"] {
+  margin: 0;
+}
+
 /* ========== 輪播 Indicators 樣式 ========== */
-.carousel-indicators {
-  bottom: 32px;
-  margin-bottom: 0;
-  z-index: 3;
+/* --- Carousel 指示器 --- */
+.custom-indicators {
+  position: absolute;
+  bottom: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 8px;
+  z-index: 5;
 }
 
-.carousel-indicators button {
-  width: 6px;
-  height: 6px;
+/* --- 每個 indicator --- */
+.custom-indicators button {
+  background-color: var(--gray-400);
+  border: none;
+  width: 8px;
+  height: 8px;
   border-radius: 50%;
-  border: 4px solid white;
-  background-color: transparent;
-  opacity: 0.6;
-  margin: 0 6px;
   transition: all 0.3s ease;
+  cursor: pointer;
 }
 
-.carousel-indicators button.active {
-  background-color: white;
-  opacity: 1;
-  transform: scale(1.2);
+/* --- active 狀態：變橫線、顏色加深 --- */
+.custom-indicators button.active {
+  width: 24px;
+  border-radius: 2px;
+  background-color: var(--white);
 }
+
+.carousel-item {
+  position: relative;
+}
+
+/* Lucide 左右 箭頭自訂 */
+.carousel-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 40px;
+  height: 40px;
+  background: rgba(255, 255, 255, 1);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 2px 0px 0px rgba(0, 0, 0, 0.25);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  z-index: 2;
+}
+
 /* ========== Checkbox 樣式 ========== */
 /* 隱藏原生 checkbox */
 input[type="checkbox"] {
@@ -529,7 +584,7 @@ input[type="checkbox"] {
   -webkit-appearance: none;
   width: 20px;
   height: 20px;
-  border: 2px solid var(--gray-600);
+  border: 1px solid var(--gray-500);
   color: var(--white);
   border-radius: 6px;
   cursor: pointer;
@@ -542,6 +597,20 @@ input[type="checkbox"] {
 input[type="checkbox"]:hover {
   border-color: var(--gray-300);
   color: var(--gray-50);
+}
+
+.filter-option .h5 {
+  margin: 0;
+}
+
+.filter-option .lucide {
+  margin-right: 0;
+  flex-shrink: 0;
+}
+
+.option-title h3 {
+  margin: 0;
+  line-height: 1.2;
 }
 
 /* 選中狀態 - 底色 */
@@ -563,73 +632,21 @@ input[type="checkbox"]:checked::after {
   transform: rotate(45deg);
 }
 
-/* Lucide 左右 箭頭自訂 */
-.carousel-control-prev,
-.carousel-control-next {
-  font-size: 40px;
+input[type="checkbox"]:indeterminate {
+  background-color: var(--primary-500);
+  border-color: var(--primary-500);
+}
+
+input[type="checkbox"]:indeterminate::after {
+  content: "";
   position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 40px; /* 點擊範圍 */
-  height: 40px;
-  background: rgba(255, 255, 255, 0.95); /* 白色半透明背景 */
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 5;
-  border: 1px solid rgba(0, 0, 0, 0.1);
-
-  box-shadow: 0px 2px 0px 0px rgba(0, 0, 0, 0.25); /* Figma 陰影設定 */
-  transition: all 0.3s ease;
-  padding: 0;
-}
-/* Hover 狀態 - 透明灰色圓形 */
-.carousel-control-prev:hover,
-.carousel-control-next:hover {
-  background: rgba(108, 117, 125, 0.3); /* 透明灰色 */
-  box-shadow: 0px 2px 8px 0px rgba(0, 0, 0, 0.25);
-  /* background: rgba(252, 250, 250, 0.5);
-  box-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.3); */
-}
-
-/* 箭頭位置在主要圖左右外框 */
-.carousel-control-prev {
-  left: calc((100% - 1296px) / 2 + 24px); /* 容器左邊緣 + 24px 間距 */
-}
-.carousel-control-next {
-  right: calc((100% - 1296px) / 2 + 24px); /* 容器右邊緣 + 24px 間距 */
-}
-
-/* 預設箭頭 - 灰色 */
-.carousel-control-prev svg,
-.carousel-control-next svg {
-  color: var(--gray-600); /* 箭頭顏色 */
-  width: 20px;
-  height: 20px;
-  stroke-width: 2.5;
-  transition: stroke 0.3s ease;
-  display: block;
-}
-/* Hover 箭頭 - 黑色 */
-.carousel-control-prev:hover svg,
-.carousel-control-next:hover isvg {
-  stroke: var(--black); /* 黑色 */
-  stroke-width: 2.5;
-}
-
-.filter-option .h5 {
-  margin: 0;
-}
-
-.filter-option .lucide {
-  flex-shrink: 0;
-  display: flex;
-}
-
-.option-title h3 {
-  margin: 0;
-  line-height: 1.2;
+  left: 4px;
+  top: 8px;
+  width: 10px;
+  height: 2px;
+  background: white;
+  border: none;
+  transform: none;
 }
 
 /* 價格範圍區塊 */
@@ -649,7 +666,7 @@ input[type="checkbox"]:checked::after {
 .price-input-wrapper input[type="number"] {
   width: 113px;
   height: 48px;
-  padding: 8px 12px;
+  padding: 12px 20px 12px 16px;
   border: 1px solid var(--gray-400);
   border-radius: 24px;
   font-size: 16px;
@@ -669,8 +686,16 @@ input[type="checkbox"]:checked::after {
 
 .price-input-wrapper input:focus {
   outline: none;
-  border-color: var(--primary-400);
+  border-color: var(--primary-500);
   box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.1);
+}
+
+.price-input-wrapper input[type="number"]::placeholder {
+  color: var(--gray-600); /* 調整 placeholder 顏色 */
+}
+
+.price-input-wrapper input[type="number"] {
+  color: var(--gray-800); /* 調整輸入文字顏色 */
 }
 
 .price-separator {
@@ -686,7 +711,7 @@ input[type="checkbox"]:checked::after {
   background: var(--primary-400);
   border: 1px solid var(--gray-400);
   border-radius: 24px;
-  color: var(--gray-800);
+  color: var(--white);
   font-size: 16px;
   cursor: pointer;
   transition: all 0.3s;
@@ -741,8 +766,13 @@ input[type="checkbox"]:checked::after {
   color: var(--gray-800);
 }
 
-.dropdown-toggle:hover {
-  border-color: var(--primary-400);
+.dropdown-toggle:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+.dropdown-toggle::after {
+  display: none !important;
 }
 
 .dropdown-toggle svg {
@@ -761,6 +791,20 @@ input[type="checkbox"]:checked::after {
   gap: 12px;
 }
 
+/* dropdown check icon 樣式 */
+.dropdown-item .check-icon {
+  width: 16px;
+  height: 16px;
+  margin-right: 8px;
+  color: var(--primary-400);
+  opacity: 0; /* 預設隱藏 */
+  transition: opacity 0.3s;
+}
+/* 只有 active 狀態才顯示打勾 */
+.dropdown-item.active .check-icon {
+  opacity: 1;
+}
+
 .dropdown-item {
   padding: 12px 8px;
   cursor: pointer;
@@ -768,38 +812,55 @@ input[type="checkbox"]:checked::after {
   border-radius: 16px;
   color: var(--gray-800);
   gap: 8px;
+  display: flex;
+  align-items: center;
+  transition: background-color 0.3s;
+}
+
+dropdown-item:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+.dropdown-item:hover:not(.active) {
+  background: var(--gray-100);
 }
 
 .dropdown-item.active {
-  background: var(--primary-400);
+  background: none;
+  color: var(--gray-900);
+}
+
+.dropdown-item.active {
+  background: none;
+  color: var(--gray-900);
 }
 
 .dropdown-item:hover {
   background: var(--gray-100);
 }
 
-.dropdown-item.active:hover {
-  background: var(--primary-500);
-}
-
-/* 商品區塊 */
 .product-card {
+  width: 306px;
+  height: 455px;
   border-radius: 40px 40px 0 0;
   /* 使內容不會超出圓角 */
-  overflow: hidden;
+  overflow: visible;
   transition: all 0.3s ease;
   cursor: pointer;
+  margin-bottom: 48px;
+  position: relative;
 }
 
 .product-image {
+  width: 306px;
+  height: 354px;
   background-color: var(--white);
   overflow: hidden;
   box-shadow: 0 4px 0 rgba(0, 0, 0, 0.1);
-  transition: all 0.3s ease;
-  cursor: pointer;
   position: relative;
-  padding-top: 100%;
   border-radius: 40px;
+  transition: all 0.3s ease;
 }
 
 .product-image img {
@@ -808,14 +869,24 @@ input[type="checkbox"]:checked::after {
   left: 0;
   width: 100%;
   height: auto;
-  object-fit: cover;
+  transition: filter 0.3s ease;
 }
 
-.product-image:hover {
-  transition: all 300ms ease-out;
+/* 產品卡片 Hover 效果 */
+.product-card:hover .product-image img {
+  filter: brightness(0.75);
 }
 
-/* TAG 標籤 */
+.product-card:hover .favorite-btn {
+  /* 當滑鼠懸停在 .image-container 時，顯示按鈕 */
+  display: block;
+}
+
+.product-card:hover .product-info h3 {
+  color: var(--primary-400); /* 商品名稱顏色變化 */
+}
+
+/* 標籤 */
 .badge {
   position: absolute;
   top: 0;
@@ -826,29 +897,34 @@ input[type="checkbox"]:checked::after {
 
 .badge-pink {
   background-color: var(--highlight-300);
+  color: var(--white);
   border-radius: 12px;
   padding: 4px 12px;
 }
 
 .badge-blue {
   background-color: var(--primary-400);
+  color: var(--white);
   border-radius: 12px;
   padding: 4px 12px;
 }
-/* 收藏按鈕 */
+/* 收藏按鈕 - 預設隱藏 */
 .favorite-btn {
+  display: none;
   position: absolute;
   top: 16px;
   right: 16px;
-
-  z-index: 1;
+  z-index: 3;
   width: 40px;
   height: 40px;
   border-radius: 20px;
   padding: 8px;
   background-color: rgba(0, 0, 0, 0.25);
   border: none;
-  transition: background-color 300ms ease-out;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s ease;
+  cursor: pointer;
 }
 
 /* 預設：白色線條愛心 */
@@ -858,7 +934,7 @@ input[type="checkbox"]:checked::after {
   stroke: var(--white);
   fill: none;
   stroke-width: 2px;
-  transition: all 300ms ease-out;
+  transition: all 0.3s ease;
 }
 /* 滑過時背景變深 */
 .favorite-btn:hover {
@@ -868,12 +944,203 @@ input[type="checkbox"]:checked::after {
 .favorite-btn.active svg {
   fill: var(--highlight-200);
 }
+
+/* 操作按鈕 */
 .product-actions {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 48px;
   display: flex;
-  flex: 1;
+
+  background-color: var(--white);
 }
 
 .action-btn {
   flex: 1;
-  background-color: var(--white);
+  color: var(--gray-700);
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  height: 100%;
+}
+
+.action-btn:first-child {
+  border-right: 1px solid var(--gray-300);
+}
+
+.action-btn:hover {
+  background-color: var(--primary-50);
+  color: var(--primary-300);
+}
+
+.action-btn svg {
+  width: 20px;
+  height: 20px;
+}
+
+/* 產品資訊 */
+.product-info .item-name {
+  color: var(--gray-800);
+}
+.product-info .shipper {
+  color: var(--gray-600);
+}
+
+.product-info .item-price {
+  color: var(--primary-400);
+}
+
+/* 最近看過 */
+.recent-viewed {
+  position: relative;
+}
+
+.recent-wrapper {
+  display: flex;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  gap: 24px;
+  padding: 0;
+  scrollbar-width: none;
+}
+
+.recent-wrapper::-webkit-scrollbar {
+  display: none;
+}
+
+.recent-item img {
+  width: 306px;
+  height: 306px;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+.recent-viewed .carousel-btn {
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.carousel-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 40px;
+  height: 40px;
+  background: rgba(255, 255, 255, 1);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 2px 0px 0px rgba(0, 0, 0, 0.25);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  z-index: 2;
+}
+
+.carousel-btn:hover {
+  background: rgba(242, 242, 244, 1);
+  box-shadow: inset 0px 2px 0px 0px rgba(0, 0, 0, 0.2);
+}
+
+.carousel-btn.prev {
+  left: 0;
+}
+
+.carousel-btn.next {
+  right: 0;
+}
+
+.carousel-btn svg {
+  width: 20px;
+  height: 20px;
+  color: var(--gray-600);
+}
+
+.carousel-btn:hover svg {
+  stroke: var(--black); /* 黑色 */
+}
+
+/* 影音廣告 */
+.video-float {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  width: 360px;
+  height: 203px;
+  z-index: 100;
+  cursor: pointer;
+  border-radius: 24px;
+  overflow: hidden;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.video-float:hover {
+  background: rgba(0, 0, 0, 0.7);
+}
+
+.video-float img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.video-float .video-play-btn {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.8);
+  border: none;
+  transition: background 0.3s ease;
+  opacity: 0;
+  z-index: 5;
+}
+
+.video-float:hover .video-play-btn {
+  opacity: 33%;
+  color: var(--white);
+}
+
+.video-float .video-play-btn svg {
+  display: none;
+  width: 36px;
+  height: 36px;
+  color: var(--white);
+  z-index: 5;
+}
+
+.video-title {
+  position: absolute;
+  bottom: 16px;
+  left: 16px;
+  color: white;
+  font-size: 14px;
+  opacity: 0;
+  transition: opacity 0.3s;
+  z-index: 5;
+}
+
+.video-float:hover .video-title {
+  opacity: 1;
+}
+
+.video-float.sticky {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 300;
 }

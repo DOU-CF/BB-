@@ -80,62 +80,36 @@
       <!-- Indicators 指示器 -->
       <!-- 自訂 Indicators -->
       <div class="custom-indicators">
-        <span class="indicator-line"></span>
-        <button
-          type="button"
-          class="indicator-line active"
-          data-bs-target="#bannerCarousel"
-          data-bs-slide-to="0"
-        ></button>
-        <button
-          type="button"
-          class="indicator-dot"
-          data-bs-target="#bannerCarousel"
-          data-bs-slide-to="1"
-        ></button>
-        <button
-          type="button"
-          class="indicator-dot"
-          data-bs-target="#bannerCarousel"
-          data-bs-slide-to="2"
-        ></button>
-        <span class="indicator-line"></span>
-      </div>
-
-      <!-- <div class="carousel-indicators">
         <button
           type="button"
           data-bs-target="#bannerCarousel"
           data-bs-slide-to="0"
           class="active"
-          aria-current="true"
-          aria-label="Slide 1"
         ></button>
         <button
           type="button"
           data-bs-target="#bannerCarousel"
           data-bs-slide-to="1"
-          aria-label="Slide 2"
         ></button>
         <button
           type="button"
           data-bs-target="#bannerCarousel"
           data-bs-slide-to="2"
-          aria-label="Slide 3"
         ></button>
-      </div> -->
+      </div>
 
       <!-- 可選：左右箭頭 -->
       <button
-        class="carousel-control-prev carousel-btn"
+        class="carousel-btn button pre"
         type="button"
         data-bs-target="#bannerCarousel"
         data-bs-slide="prev"
       >
         <i class="lucide" data-lucide="chevron-left"></i>
       </button>
+
       <button
-        class="carousel-control-next carousel-btn"
+        class="carousel-btn button next"
         type="button"
         data-bs-target="#bannerCarousel"
         data-bs-slide="next"
@@ -255,7 +229,7 @@
                 <input
                   type="number"
                   placeholder="$最低價格"
-                  id="min-price"
+                  class="min-price"
                   class="form-control"
                 />
               </div>
@@ -264,7 +238,7 @@
                 <input
                   type="number"
                   placeholder="$最高價格"
-                  id="max-price"
+                  class="max-price"
                   class="form-control"
                 />
               </div>
@@ -273,7 +247,7 @@
           <div class="border-bottom border-gray-400 my-24"></div>
 
           <!-- clear btn -->
-          <button class="button btn-clear" id="clear-filters">清除全部</button>
+          <button class="button btn-clear">清除全部</button>
         </div>
 
         <!-- dropdown 區塊 -->
@@ -305,12 +279,14 @@
                           class="dropdown-item active"
                           href="#"
                           data-value="default"
-                          >不指定</a
                         >
+                          <i class="check-icon" data-lucide="check"></i>
+                          不指定
+                        </a>
                       </li>
                       <li>
                         <a class="dropdown-item" href="#" data-value="brandnew"
-                          >全新</a
+                          ><i class="check-icon" data-lucide="check"></i>全新</a
                         >
                       </li>
                       <li>
@@ -318,21 +294,25 @@
                           class="dropdown-item"
                           href="#"
                           data-value="fairly＿new"
+                          ><i class="check-icon" data-lucide="check"></i
                           >九成新</a
                         >
                       </li>
                       <li>
                         <a class="dropdown-item" href="#" data-value="discount"
+                          ><i class="check-icon" data-lucide="check"></i
                           >七成新以下</a
                         >
                       </li>
                       <li>
                         <a class="dropdown-item" href="#" data-value="arrival"
+                          ><i class="check-icon" data-lucide="check"></i
                           >以物易物</a
                         >
                       </li>
                       <li>
                         <a class="dropdown-item" href="#" data-value="rental"
+                          ><i class="check-icon" data-lucide="check"></i
                           >可捐贈</a
                         >
                       </li>
@@ -354,7 +334,12 @@
                     </button>
                     <ul class="dropdown-menu">
                       <li>
-                        <a class="dropdown-item" href="#" data-value="newest"
+                        <a
+                          class="dropdown-item active"
+                          href="#"
+                          data-value="default"
+                        >
+                          <i class="check-icon" data-lucide="check"></i
                           >最新上架</a
                         >
                       </li>
@@ -363,6 +348,7 @@
                           class="dropdown-item"
                           href="#"
                           data-value="price_low_to_high"
+                          ><i class="check-icon" data-lucide="check"></i
                           >價格由低到高</a
                         >
                       </li>
@@ -371,6 +357,7 @@
                           class="dropdown-item"
                           href="#"
                           data-value="price_high_to_low"
+                          ><i class="check-icon" data-lucide="check"></i
                           >價格由高到低</a
                         >
                       </li>
@@ -385,6 +372,9 @@
           <div class="row mb-160">
             <div class="col-4">
               <div class="product-card mb-48">
+                <button class="favorite-btn button" aria-label="收藏">
+                  <i class="lucide" data-lucide="heart"></i>
+                </button>
                 <a href="product.html">
                   <div class="product-image mb-16">
                     <div class="badge paragraph-body-small d-flex">
@@ -396,9 +386,6 @@
                       alt="多功能寶寶背巾"
                       class="mb-16"
                     />
-                    <button class="favorite-btn" aria-label="收藏">
-                      <i class="lucide" data-lucide="heart"></i>
-                    </button>
 
                     <div class="product-actions d-flex">
                       <button class="action-btn button" aria-label="分享">
@@ -432,65 +419,66 @@
           </div>
         </div>
       </div>
-      <section class="recent-viewed">
-        <h2 class="h3 mb-32">您最近看過的商品</h2>
-        <button class="carousel-btn prev">
-          <i data-lucide="chevron-left"></i>
-        </button>
-        <div class="container recent-wrapper">
+      <section class="container recent-viewed">
+        <h2 class="h3 pt-120 mb-32">您最近看過的商品</h2>
+
+        <div class="container recent-wrapper pt-186 pb-160">
+          <button class="carousel-btn button prev">
+            <i data-lucide="chevron-left"></i>
+          </button>
           <div class="col-3 product-item">
             <div class="product-card mb-48">
-              <!-- <a href="product.html"> -->
-              <div class="product-image mb-16">
-                <div class="badge paragraph-body-small d-flex">
-                  <span class="badge-pink">九成新</span>
-                  <span class="badge-blue">育兒省力神器</span>
-                </div>
-                <img
-                  src="../assets/images/products-Images/product08.jpg"
-                  alt="多功能寶寶背巾"
-                  class="mb-16"
-                />
-                <button class="favorite-btn button" aria-label="收藏">
-                  <i class="lucide" data-lucide="heart"></i>
-                </button>
-
-                <div class="product-actions d-flex align-center">
-                  <button
-                    class="action-btn button send d-flex align-center justify-center"
-                    aria-label="分享"
-                  >
-                    <i class="lucide text-primary-300" data-lucide="send"></i>
-                    <span>分享</span>
+              <a href="product.html">
+                <div class="product-image mb-16">
+                  <div class="badge paragraph-body-small d-flex">
+                    <span class="badge-pink">九成新</span>
+                    <span class="badge-blue">育兒省力神器</span>
+                  </div>
+                  <button class="favorite-btn button" aria-label="收藏">
+                    <i class="lucide" data-lucide="heart"></i>
                   </button>
+                  <img
+                    src="../assets/images/products-Images/product08.jpg"
+                    alt="多功能寶寶背巾"
+                    class="mb-16"
+                  />
 
-                  <button
-                    class="action-btn button chat d-flex align-center justify-center"
-                    aria-label="聊聊"
-                  >
-                    <i
-                      class="lucide text-primary-300"
-                      data-lucide="message-circle-more"
-                    ></i>
-                    <span>聊聊</span>
-                  </button>
+                  <div class="product-actions d-flex align-center">
+                    <button
+                      class="action-btn button send d-flex align-center justify-center"
+                      aria-label="分享"
+                    >
+                      <i class="lucide text-primary-300" data-lucide="send"></i>
+                      <span>分享</span>
+                    </button>
+
+                    <button
+                      class="action-btn button chat d-flex align-center justify-center"
+                      aria-label="聊聊"
+                    >
+                      <i
+                        class="lucide text-primary-300"
+                        data-lucide="message-circle-more"
+                      ></i>
+                      <span>聊聊</span>
+                    </button>
+                  </div>
                 </div>
-              </div>
 
-              <div class="product-info">
-                <h3 class="h5 mb-8">多功能寶寶背巾</h3>
-                <p class="shipper paragraph-body-small mb-8">
-                  宅配、超商店到店
-                </p>
-                <p class="price h5">NT$1,280</p>
-              </div>
-              <!-- </a> -->
+                <div class="product-info">
+                  <h3 class="h5 mb-8">多功能寶寶背巾</h3>
+                  <p class="shipper paragraph-body-small mb-8">
+                    宅配、超商店到店
+                  </p>
+                  <p class="price h5">NT$1,280</p>
+                </div>
+              </a>
             </div>
           </div>
         </div>
-        <button class="carousel-btn next">
+        <!-- <button class="carousel-btn button next">
           <i data-lucide="chevron-right"></i>
-        </button>
+        </button> -->
       </section>
     </main>
     <a href="video.html" class="video-float">
@@ -500,13 +488,14 @@
       />
 
       <button
-        class="action-btn button send d-flex align-center justify-center"
+        class="action-btn button d-flex align-center justify-center"
         aria-label="播放"
       >
-        <i data-lucide="circle-play"></i>
+        <i data-lucide="circle-play pt-83"></i>
       </button>
-
-      <span class="video-title paragraph-body">影片名稱</span>
+      <div class="video-name">
+        <span class="video-title paragraph-body">影片名稱</span>
+      </div>
     </a>
 
     <script type="module" src="../main.js"></script>
@@ -518,23 +507,71 @@
         lucide.createIcons();
       });
 
-      // 在 DOMContentLoaded 裡面加入
-      const carousel = document.getElementById("bannerCarousel");
-      const indicatorDots = document.querySelectorAll(".indicator-dot");
+      // Dropdown 選項切換（Bootstrap 不會自動處理）
 
-      // 監聽輪播切換
-      carousel.addEventListener("slide.bs.carousel", function (event) {
-        indicatorDots.forEach((dot) => dot.classList.remove("active"));
-        indicatorDots[event.to].classList.add("active");
-      });
+      // const dropdownItems = document.querySelectorAll(".dropdown-item");
+      // const dropdownButton = document.querySelector(
+      //   ".dropdown-toggle .sort-text"
+      // );
 
-      // 點擊 indicator 切換
-      indicatorDots.forEach((dot, index) => {
-        dot.addEventListener("click", () => {
-          const bsCarousel = new bootstrap.Carousel(carousel);
-          bsCarousel.to(index);
+      // 選取所有 dropdown
+      document.querySelectorAll(".dropdown").forEach((dropdown) => {
+        // 取得該 dropdown 的所有選項
+        const items = dropdown.querySelectorAll(".dropdown-item");
+        // 取得顯示文字的元素
+        const toggleText = dropdown.querySelector(".sort-text");
+
+        // 為每個選項綁定點擊事件
+        items.forEach((item) => {
+          item.addEventListener("click", (e) => {
+            e.preventDefault(); // 防止 <a> 連結跳轉
+
+            // ① 移除當前 dropdown 內所有 active
+            items.forEach((i) => i.classList.remove("active"));
+
+            // ② 為當前點擊的項目加上 active
+            item.classList.add("active");
+
+            // ③ 更新按鈕顯示的文字
+            const text = item.textContent.trim();
+            toggleText.textContent = text;
+
+            // ④ 重新初始化 Lucide icons（確保新的 icon 正常顯示）
+            lucide.createIcons();
+          });
         });
       });
+      document.addEventListener("DOMContentLoaded", () => {
+        lucide.createIcons();
+
+        const carousel = document.getElementById("bannerCarousel");
+        const allIndicators = document.querySelectorAll(
+          ".indicator-line, .indicator-dot"
+        );
+
+        // 切換事件
+        carousel.addEventListener("slide.bs.carousel", function (event) {
+          allIndicators.forEach((el) => el.classList.remove("active"));
+          allIndicators[event.to].classList.add("active");
+        });
+
+        // 點擊事件
+        allIndicators.forEach((el, index) => {
+          el.addEventListener("click", () => {
+            const bsCarousel =
+              bootstrap.Carousel.getInstance(carousel) ||
+              new bootstrap.Carousel(carousel);
+            bsCarousel.to(index);
+          });
+        });
+      });
+
+      // indicator.forEach((line, index) => {
+      //   dot.addEventListener("click", () => {
+      //     const bsCarousel = new bootstrap.Carousel(carousel);
+      //     bsCarousel.to(index);
+      //   });
+      // });
 
       // 外出用品 checkbox 邏輯: 父層 checkbox 的「半選狀態」。需要用 JavaScript 控制
       const parentCheckbox = document.getElementById("outdoor-parent");
@@ -571,7 +608,7 @@
       });
 
       // 清除全部按鈕功能
-      const clearBtn = document.getElementById("clear-filters");
+      const clearBtn = document.querySelector(".btn-clear");
       if (clearBtn) {
         clearBtn.addEventListener("click", () => {
           // 清除所有 checkbox
@@ -580,16 +617,10 @@
           });
 
           // 清除價格輸入
-          const minPrice = document.getElementById("min-price");
-          const maxPrice = document.getElementById("max-price");
+          const minPrice = document.querySelector(".min-price");
+          const maxPrice = document.querySelector(".max-price");
           if (minPrice) minPrice.value = "";
           if (maxPrice) maxPrice.value = "";
-
-          // Dropdown 選項切換（Bootstrap 不會自動處理）
-          const dropdownItems = document.querySelectorAll(".dropdown-item");
-          const dropdownButton = document.querySelector(
-            ".dropdown-toggle .sort-text"
-          );
 
           dropdownItems.forEach((item) => {
             item.addEventListener("click", (e) => {
@@ -626,7 +657,9 @@
       const buttons = document.querySelectorAll(".favorite-btn");
 
       buttons.forEach((btn) => {
-        btn.addEventListener("click", function () {
+        btn.addEventListener("click", function (e) {
+          e.preventDefault(); // 防止觸發 a 連結
+          e.stopPropagation(); // 防止事件冒泡
           this.classList.toggle("active");
         });
       });

@@ -78,7 +78,31 @@
       </div>
 
       <!-- Indicators 指示器 -->
-      <div class="carousel-indicators">
+      <!-- 自訂 Indicators -->
+      <div class="custom-indicators">
+        <span class="indicator-line"></span>
+        <button
+          type="button"
+          class="indicator-line active"
+          data-bs-target="#bannerCarousel"
+          data-bs-slide-to="0"
+        ></button>
+        <button
+          type="button"
+          class="indicator-dot"
+          data-bs-target="#bannerCarousel"
+          data-bs-slide-to="1"
+        ></button>
+        <button
+          type="button"
+          class="indicator-dot"
+          data-bs-target="#bannerCarousel"
+          data-bs-slide-to="2"
+        ></button>
+        <span class="indicator-line"></span>
+      </div>
+
+      <!-- <div class="carousel-indicators">
         <button
           type="button"
           data-bs-target="#bannerCarousel"
@@ -99,11 +123,11 @@
           data-bs-slide-to="2"
           aria-label="Slide 3"
         ></button>
-      </div>
+      </div> -->
 
       <!-- 可選：左右箭頭 -->
       <button
-        class="carousel-control-prev"
+        class="carousel-control-prev carousel-btn"
         type="button"
         data-bs-target="#bannerCarousel"
         data-bs-slide="prev"
@@ -111,7 +135,7 @@
         <i class="lucide" data-lucide="chevron-left"></i>
       </button>
       <button
-        class="carousel-control-next"
+        class="carousel-control-next carousel-btn"
         type="button"
         data-bs-target="#bannerCarousel"
         data-bs-slide="next"
@@ -126,7 +150,7 @@
         <div class="col-3 pe-14">
           <!-- 篩選條件 -->
           <div class="filter-options">
-            <div class="d-flex align-items-center option-title mb-16">
+            <div class="d-flex align-center option-title mb-16">
               <i class="lucide text-primary-300" data-lucide="funnel"></i>
               <h3 class="h5">篩選條件</h3>
             </div>
@@ -190,7 +214,7 @@
 
           <!-- 位置（依地區） -->
           <div class="filter-options">
-            <div class="d-flex align-items-center option-title mb-16">
+            <div class="d-flex align-center option-title mb-16">
               <i class="lucide text-primary-300" data-lucide="map-pin"></i>
               <h3 class="h5">位置（依地區）</h3>
             </div>
@@ -218,7 +242,7 @@
 
           <!-- 價格範圍 -->
           <div class="price-section">
-            <div class="d-flex align-items-center option-title mb-16">
+            <div class="d-flex align-center option-title mb-16">
               <i
                 class="lucide text-primary-300"
                 data-lucide="circle-dollar-sign"
@@ -249,7 +273,7 @@
           <div class="border-bottom border-gray-400 my-24"></div>
 
           <!-- clear btn -->
-          <button class="btn-clear" id="clear-filters">清除全部</button>
+          <button class="button btn-clear" id="clear-filters">清除全部</button>
         </div>
 
         <!-- dropdown 區塊 -->
@@ -361,49 +385,129 @@
           <div class="row mb-160">
             <div class="col-4">
               <div class="product-card mb-48">
-                <!-- <a href="product.html"> -->
-                <div class="product-image mb-16">
-                  <div class="badge paragraph-body-small d-flex">
-                    <span class="badge-pink">九成新</span>
-                    <span class="badge-blue">育兒省力神器</span>
-                  </div>
-                  <img
-                    src="../assets/images/products-Images/product08.jpg"
-                    alt="多功能寶寶背巾"
-                    class="mb-16"
-                  />
-                  <button class="favorite-btn" aria-label="收藏">
-                    <i class="lucide" data-lucide="heart"></i>
-                  </button>
-
-                  <div class="product-actions d-flex">
-                    <button class="action-btn button" aria-label="分享">
-                      <i class="lucide text-primary-300" data-lucide="send"></i>
-                      <span>分享</span>
+                <a href="product.html">
+                  <div class="product-image mb-16">
+                    <div class="badge paragraph-body-small d-flex">
+                      <span class="badge-pink">九成新</span>
+                      <span class="badge-blue">育兒省力神器</span>
+                    </div>
+                    <img
+                      src="../assets/images/products-Images/product08.jpg"
+                      alt="多功能寶寶背巾"
+                      class="mb-16"
+                    />
+                    <button class="favorite-btn" aria-label="收藏">
+                      <i class="lucide" data-lucide="heart"></i>
                     </button>
 
-                    <button class="action-btn" aria-label="聊聊">
-                      <i
-                        class="lucide text-primary-300"
-                        data-lucide="message-circle-more"
-                      ></i>
-                      <span>聊聊</span>
-                    </button>
-                  </div>
-                </div>
+                    <div class="product-actions d-flex">
+                      <button class="action-btn button" aria-label="分享">
+                        <i
+                          class="lucide text-primary-300"
+                          data-lucide="send"
+                        ></i>
+                        <span>分享</span>
+                      </button>
 
-                <div class="product-info">
-                  <h3 class="h5 mb-8">多功能寶寶背巾</h3>
-                  <p class="paragraph-body-small mb-8">宅配、超商店到店</p>
-                  <p class="h5">NT$1,280</p>
-                </div>
-                <!-- </a> -->
+                      <button class="action-btn" aria-label="聊聊">
+                        <i
+                          class="lucide text-primary-300"
+                          data-lucide="message-circle-more"
+                        ></i>
+                        <span>聊聊</span>
+                      </button>
+                    </div>
+                  </div>
+
+                  <div class="product-info">
+                    <h3 class="h5 mb-8">多功能寶寶背巾</h3>
+                    <p class="shipper paragraph-body-small mb-8">
+                      宅配、超商店到店
+                    </p>
+                    <p class="h5">NT$1,280</p>
+                  </div>
+                </a>
               </div>
             </div>
           </div>
         </div>
       </div>
+      <section class="recent-viewed">
+        <h2 class="h3 mb-32">您最近看過的商品</h2>
+        <button class="carousel-btn prev">
+          <i data-lucide="chevron-left"></i>
+        </button>
+        <div class="container recent-wrapper">
+          <div class="col-3 product-item">
+            <div class="product-card mb-48">
+              <!-- <a href="product.html"> -->
+              <div class="product-image mb-16">
+                <div class="badge paragraph-body-small d-flex">
+                  <span class="badge-pink">九成新</span>
+                  <span class="badge-blue">育兒省力神器</span>
+                </div>
+                <img
+                  src="../assets/images/products-Images/product08.jpg"
+                  alt="多功能寶寶背巾"
+                  class="mb-16"
+                />
+                <button class="favorite-btn button" aria-label="收藏">
+                  <i class="lucide" data-lucide="heart"></i>
+                </button>
+
+                <div class="product-actions d-flex align-center">
+                  <button
+                    class="action-btn button send d-flex align-center justify-center"
+                    aria-label="分享"
+                  >
+                    <i class="lucide text-primary-300" data-lucide="send"></i>
+                    <span>分享</span>
+                  </button>
+
+                  <button
+                    class="action-btn button chat d-flex align-center justify-center"
+                    aria-label="聊聊"
+                  >
+                    <i
+                      class="lucide text-primary-300"
+                      data-lucide="message-circle-more"
+                    ></i>
+                    <span>聊聊</span>
+                  </button>
+                </div>
+              </div>
+
+              <div class="product-info">
+                <h3 class="h5 mb-8">多功能寶寶背巾</h3>
+                <p class="shipper paragraph-body-small mb-8">
+                  宅配、超商店到店
+                </p>
+                <p class="price h5">NT$1,280</p>
+              </div>
+              <!-- </a> -->
+            </div>
+          </div>
+        </div>
+        <button class="carousel-btn next">
+          <i data-lucide="chevron-right"></i>
+        </button>
+      </section>
     </main>
+    <a href="video.html" class="video-float">
+      <img
+        src="/assets/images/products-Images/video-desktop.png"
+        alt="video-name"
+      />
+
+      <button
+        class="action-btn button send d-flex align-center justify-center"
+        aria-label="播放"
+      >
+        <i data-lucide="circle-play"></i>
+      </button>
+
+      <span class="video-title paragraph-body">影片名稱</span>
+    </a>
 
     <script type="module" src="../main.js"></script>
 
@@ -414,36 +518,56 @@
         lucide.createIcons();
       });
 
-      // // 取得輪播元素
-      // const carousel = document.querySelector("#bannerCarousel");
-      // const slides = document.querySelectorAll(".carousel-item");
+      // 在 DOMContentLoaded 裡面加入
+      const carousel = document.getElementById("bannerCarousel");
+      const indicatorDots = document.querySelectorAll(".indicator-dot");
 
-      // carousel.addEventListener("slide.bs.carousel", function (event) {
-      //   slides.forEach((slide) => {
-      //     const img = slide.querySelector(".banner_product_ad img");
-      //     if (img) img.classList.toggle("active", index === event.to);
-      //   });
-      // });
+      // 監聽輪播切換
+      carousel.addEventListener("slide.bs.carousel", function (event) {
+        indicatorDots.forEach((dot) => dot.classList.remove("active"));
+        indicatorDots[event.to].classList.add("active");
+      });
 
-      // Dropdown 選項切換（Bootstrap 不會自動處理）
-      const dropdownItems = document.querySelectorAll(".dropdown-item");
-
-      dropdownItems.forEach((item) => {
-        item.addEventListener("click", (e) => {
-          e.preventDefault();
-
-          // ① 移除當前 dropdown 內的 active
-          siblings.forEach((i) => i.classList.remove("active"));
-
-          // ② 移除所有 dropdown 的 active
-          dropdownItems.forEach((i) => i.classList.remove("active"));
-
-          // 加上當前選中的 active
-          item.classList.add("active");
-
-          // 更新顯示文字
-          selectedSort.textContent = item.textContent;
+      // 點擊 indicator 切換
+      indicatorDots.forEach((dot, index) => {
+        dot.addEventListener("click", () => {
+          const bsCarousel = new bootstrap.Carousel(carousel);
+          bsCarousel.to(index);
         });
+      });
+
+      // 外出用品 checkbox 邏輯: 父層 checkbox 的「半選狀態」。需要用 JavaScript 控制
+      const parentCheckbox = document.getElementById("outdoor-parent");
+      const childCheckboxes = document.querySelectorAll(".outdoor-child");
+
+      // 監聽子選項變化
+      childCheckboxes.forEach((child) => {
+        child.addEventListener("change", () => {
+          const checkedCount = Array.from(childCheckboxes).filter(
+            (cb) => cb.checked
+          ).length;
+
+          if (checkedCount === 0) {
+            // 全部未選
+            parentCheckbox.checked = false;
+            parentCheckbox.indeterminate = false;
+          } else if (checkedCount === childCheckboxes.length) {
+            // 全部選中
+            parentCheckbox.checked = true;
+            parentCheckbox.indeterminate = false;
+          } else {
+            // 部分選中（顯示橫線）
+            parentCheckbox.checked = false;
+            parentCheckbox.indeterminate = true;
+          }
+        });
+      });
+
+      // 監聽父選項
+      parentCheckbox.addEventListener("change", () => {
+        const isChecked = parentCheckbox.checked;
+        childCheckboxes.forEach((cb) => (cb.checked = isChecked));
+        parentCheckbox.indeterminate = false;
       });
 
       // 清除全部按鈕功能
@@ -461,12 +585,42 @@
           if (minPrice) minPrice.value = "";
           if (maxPrice) maxPrice.value = "";
 
-          // 重置排序為預設
-          dropdownItems.forEach((i) => i.classList.remove("active"));
-          if (dropdownItems[0]) dropdownItems[0].classList.add("active");
-          if (selectedSort) selectedSort.textContent = "不指定";
+          // Dropdown 選項切換（Bootstrap 不會自動處理）
+          const dropdownItems = document.querySelectorAll(".dropdown-item");
+          const dropdownButton = document.querySelector(
+            ".dropdown-toggle .sort-text"
+          );
+
+          dropdownItems.forEach((item) => {
+            item.addEventListener("click", (e) => {
+              e.preventDefault();
+              dropdownItems.forEach((i) => i.classList.remove("active"));
+              item.classList.add("active");
+              dropdownButton.textContent = item.textContent; // 更新按鈕的文本
+            });
+          });
+
+          // 找到當前 dropdown 的所有選項
+          const dropdown = item.closest(".dropdown");
+          const siblings = dropdown.querySelectorAll(".dropdown-item");
+
+          // ① 移除當前 dropdown 內的 active
+          siblings.forEach((i) => i.classList.remove("active"));
+
+          // ② 加上當前選中的 active
+          item.classList.add("active");
+
+          // 更新顯示文字
+          const button = dropdown.querySelector(".dropdown-toggle");
+          const sortText = button.querySelector(".sort-text");
+          sortText.textContent = item.textContent;
         });
       }
+
+      // 重置排序為預設
+      dropdownItems.forEach((i) => i.classList.remove("active"));
+      if (dropdownItems[0]) dropdownItems[0].classList.add("active");
+      if (selectedSort) selectedSort.textContent = "不指定";
 
       // 選取全部收藏按鈕
       const buttons = document.querySelectorAll(".favorite-btn");
@@ -475,6 +629,17 @@
         btn.addEventListener("click", function () {
           this.classList.toggle("active");
         });
+      });
+
+      const videoFloat = document.querySelector(".video-float");
+      const stickyOffset = 200; // 根據需要調整距離
+
+      window.addEventListener("scroll", () => {
+        if (window.scrollY > stickyOffset) {
+          videoFloat.classList.add("sticky");
+        } else {
+          videoFloat.classList.remove("sticky");
+        }
       });
     </script>
   </body>

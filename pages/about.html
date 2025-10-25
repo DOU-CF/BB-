@@ -674,6 +674,174 @@
           videoFloat.classList.remove("sticky");
         }
       });
+
+      // Dropdown 選項切換（Bootstrap 不會自動處理）
+
+      // const dropdownItems = document.querySelectorAll(".dropdown-item");
+      // const dropdownButton = document.querySelector(
+      //   ".dropdown-toggle .sort-text"
+      // );
+
+      // 選取所有 dropdown
+      document.querySelectorAll(".dropdown").forEach((dropdown) => {
+        // 取得該 dropdown 的所有選項
+        const items = dropdown.querySelectorAll(".dropdown-item");
+        // 取得顯示文字的元素
+        const toggleText = dropdown.querySelector(".sort-text");
+
+        // 為每個選項綁定點擊事件
+        items.forEach((item) => {
+          item.addEventListener("click", (e) => {
+            e.preventDefault(); // 防止 <a> 連結跳轉
+
+            // ① 移除當前 dropdown 內所有 active
+            items.forEach((i) => i.classList.remove("active"));
+
+            // ② 為當前點擊的項目加上 active
+            item.classList.add("active");
+
+            // ③ 更新按鈕顯示的文字
+            const text = item.textContent.trim();
+            toggleText.textContent = text;
+
+            // ④ 重新初始化 Lucide icons（確保新的 icon 正常顯示）
+            lucide.createIcons();
+          });
+        });
+      });
+      document.addEventListener("DOMContentLoaded", () => {
+        lucide.createIcons();
+
+        const carousel = document.getElementById("bannerCarousel");
+        const allIndicators = document.querySelectorAll(
+          ".indicator-line, .indicator-dot"
+        );
+
+        // 切換事件
+        carousel.addEventListener("slide.bs.carousel", function (event) {
+          allIndicators.forEach((el) => el.classList.remove("active"));
+          allIndicators[event.to].classList.add("active");
+        });
+
+        // 點擊事件
+        allIndicators.forEach((el, index) => {
+          el.addEventListener("click", () => {
+            const bsCarousel =
+              bootstrap.Carousel.getInstance(carousel) ||
+              new bootstrap.Carousel(carousel);
+            bsCarousel.to(index);
+          });
+        });
+      });
+
+      // indicator.forEach((line, index) => {
+      //   dot.addEventListener("click", () => {
+      //     const bsCarousel = new bootstrap.Carousel(carousel);
+      //     bsCarousel.to(index);
+      //   });
+      // });
+
+      // 外出用品 checkbox 邏輯: 父層 checkbox 的「半選狀態」。需要用 JavaScript 控制
+      const parentCheckbox = document.getElementById("outdoor-parent");
+      const childCheckboxes = document.querySelectorAll(".outdoor-child");
+
+      // 監聽子選項變化
+      childCheckboxes.forEach((child) => {
+        child.addEventListener("change", () => {
+          const checkedCount = Array.from(childCheckboxes).filter(
+            (cb) => cb.checked
+          ).length;
+
+          if (checkedCount === 0) {
+            // 全部未選
+            parentCheckbox.checked = false;
+            parentCheckbox.indeterminate = false;
+          } else if (checkedCount === childCheckboxes.length) {
+            // 全部選中
+            parentCheckbox.checked = true;
+            parentCheckbox.indeterminate = false;
+          } else {
+            // 部分選中（顯示橫線）
+            parentCheckbox.checked = false;
+            parentCheckbox.indeterminate = true;
+          }
+        });
+      });
+
+      // 監聽父選項
+      parentCheckbox.addEventListener("change", () => {
+        const isChecked = parentCheckbox.checked;
+        childCheckboxes.forEach((cb) => (cb.checked = isChecked));
+        parentCheckbox.indeterminate = false;
+      });
+
+      // 清除全部按鈕功能
+      const clearBtn = document.querySelector(".btn-clear");
+      if (clearBtn) {
+        clearBtn.addEventListener("click", () => {
+          // 清除所有 checkbox
+          document.querySelectorAll('input[type="checkbox"]').forEach((cb) => {
+            cb.checked = false;
+          });
+
+          // 清除價格輸入
+          const minPrice = document.querySelector(".min-price");
+          const maxPrice = document.querySelector(".max-price");
+          if (minPrice) minPrice.value = "";
+          if (maxPrice) maxPrice.value = "";
+
+          dropdownItems.forEach((item) => {
+            item.addEventListener("click", (e) => {
+              e.preventDefault();
+              dropdownItems.forEach((i) => i.classList.remove("active"));
+              item.classList.add("active");
+              dropdownButton.textContent = item.textContent; // 更新按鈕的文本
+            });
+          });
+
+          // 找到當前 dropdown 的所有選項
+          const dropdown = item.closest(".dropdown");
+          const siblings = dropdown.querySelectorAll(".dropdown-item");
+
+          // ① 移除當前 dropdown 內的 active
+          siblings.forEach((i) => i.classList.remove("active"));
+
+          // ② 加上當前選中的 active
+          item.classList.add("active");
+
+          // 更新顯示文字
+          const button = dropdown.querySelector(".dropdown-toggle");
+          const sortText = button.querySelector(".sort-text");
+          sortText.textContent = item.textContent;
+        });
+      }
+
+      // 重置排序為預設
+      dropdownItems.forEach((i) => i.classList.remove("active"));
+      if (dropdownItems[0]) dropdownItems[0].classList.add("active");
+      if (selectedSort) selectedSort.textContent = "不指定";
+
+      // 選取全部收藏按鈕
+      const buttons = document.querySelectorAll(".favorite-btn");
+
+      buttons.forEach((btn) => {
+        btn.addEventListener("click", function (e) {
+          e.preventDefault(); // 防止觸發 a 連結
+          e.stopPropagation(); // 防止事件冒泡
+          this.classList.toggle("active");
+        });
+      });
+
+      const videoFloat = document.querySelector(".video-float");
+      const stickyOffset = 200; // 根據需要調整距離
+
+      window.addEventListener("scroll", () => {
+        if (window.scrollY > stickyOffset) {
+          videoFloat.classList.add("sticky");
+        } else {
+          videoFloat.classList.remove("sticky");
+        }
+      });
     </script>
   </body>
 </html>

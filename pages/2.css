@@ -525,29 +525,6 @@ body {
 }
 
 /* ========== 輪播 Indicators 樣式 ========== */
-/* .carousel-indicators {
-  bottom: 32px;
-  margin-bottom: 0;
-  z-index: 3;
-}
-
-.carousel-indicators button {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  border: 4px solid white;
-  background-color: transparent;
-  opacity: 0.6;
-  margin: 0 6px;
-  transition: all 0.3s ease;
-}
-
-.carousel-indicators button.active {
-  background-color: white;
-  opacity: 1;
-  transform: scale(1.2);
-} */
-
 /* --- Carousel 指示器 --- */
 .custom-indicators {
   position: absolute;
@@ -556,7 +533,7 @@ body {
   transform: translateX(-50%);
   display: flex;
   gap: 8px;
-  /* z-index: 5; */
+  z-index: 5;
 }
 
 /* --- 每個 indicator --- */
@@ -789,13 +766,6 @@ input[type="checkbox"]:indeterminate::after {
   color: var(--gray-800);
 }
 
-/* 瀏覽器預設會對 select / button 的 focus 加藍邊。 */
-/* .dropdown-toggle:focus,
-.dropdown-item:focus {
-  outline: none;
-  box-shadow: none;
-  background-color: transparent;
-} */
 .dropdown-toggle:focus {
   outline: none;
   box-shadow: none;
@@ -804,10 +774,6 @@ input[type="checkbox"]:indeterminate::after {
 .dropdown-toggle::after {
   display: none !important;
 }
-
-/* .dropdown-toggle:hover {
-  border-color: var(--primary-400);
-} */
 
 .dropdown-toggle svg {
   width: 16px;
@@ -865,26 +831,6 @@ dropdown-item:focus {
   color: var(--gray-900);
 }
 
-/* .dropdown-item::before {
-  content: "";
-  display: inline-block;
-  width: 16px;
-  height: 16px;
-  border: none;
-
-  margin-right: 8px;
-  vertical-align: middle;
-  transition: all 0.3s;
-}
-
-.dropdown-item.active::before {
-  background-color: var(--primary-400);
-  border-color: var(--primary-400);
-   background-image: url("data:image/svg+xml,%3Csvg width='12' height='10' ... %3E");
-  background-repeat: no-repeat;
-  background-position: center;
-} */
-
 .dropdown-item.active {
   background: none;
   color: var(--gray-900);
@@ -894,19 +840,9 @@ dropdown-item:focus {
   background: var(--gray-100);
 }
 
-/* .dropdown-item.active:hover {
-  background: var(--primary-500);
-} */
-
-/* 商品區塊 */
-/* .product-item {
-  position: relative;
-  transition: transform 0.3s ease;
-} */
-
 .product-card {
   width: 306px;
-  /* height: auto; */
+  height: 455px;
   border-radius: 40px 40px 0 0;
   /* 使內容不會超出圓角 */
   overflow: visible;
@@ -918,7 +854,7 @@ dropdown-item:focus {
 
 .product-image {
   width: 306px;
-  height: 306px;
+  height: 354px;
   background-color: var(--white);
   overflow: hidden;
   box-shadow: 0 4px 0 rgba(0, 0, 0, 0.1);
@@ -928,15 +864,11 @@ dropdown-item:focus {
 }
 
 .product-image img {
-  /* position: absolute;
+  position: absolute;
   top: 0;
   left: 0;
   width: 100%;
-  height: auto; */
-
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+  height: auto;
   transition: filter 0.3s ease;
 }
 
@@ -953,11 +885,6 @@ dropdown-item:focus {
 .product-card:hover .product-info h3 {
   color: var(--primary-400); /* 商品名稱顏色變化 */
 }
-/* .product-image:hover img {
-  transition: all 300ms ease-out;
-  filter: brightness(0.75);
-  transition: filter 0.3s ease;
-} */
 
 /* 標籤 */
 .badge {
@@ -987,7 +914,6 @@ dropdown-item:focus {
   position: absolute;
   top: 16px;
   right: 16px;
-
   z-index: 3;
   width: 40px;
   height: 40px;
@@ -1056,11 +982,14 @@ dropdown-item:focus {
 }
 
 /* 產品資訊 */
+.product-info .item-name {
+  color: var(--gray-800);
+}
 .product-info .shipper {
   color: var(--gray-600);
 }
 
-.product-info .price {
+.product-info .item-price {
   color: var(--primary-400);
 }
 
@@ -1070,7 +999,6 @@ dropdown-item:focus {
 }
 
 .recent-wrapper {
-  /* list-style: none; 確保移除列表的點 */
   display: flex;
   overflow-x: auto;
   scroll-behavior: smooth;
@@ -1167,7 +1095,7 @@ dropdown-item:focus {
   left: 0;
 }
 
-.video-float .action-btn {
+.video-float .video-play-btn {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -1179,23 +1107,20 @@ dropdown-item:focus {
   border: none;
   transition: background 0.3s ease;
   opacity: 0;
-  /* z-index: 2;
-  background: rgba(255, 255, 255, 0.9);
-  border-radius: 50%;
-  padding: 12px;
- 
-  transition: opacity 0.3s; */
+  z-index: 5;
 }
 
-.video-float:hover .action-btn {
-  opacity: 1;
+.video-float:hover .video-play-btn {
+  opacity: 33%;
+  color: var(--white);
 }
 
-.video-float .action-btn svg {
+.video-float .video-play-btn svg {
   display: none;
   width: 36px;
   height: 36px;
   color: var(--white);
+  z-index: 5;
 }
 
 .video-title {
@@ -1206,50 +1131,12 @@ dropdown-item:focus {
   font-size: 14px;
   opacity: 0;
   transition: opacity 0.3s;
-  z-index: 2;
+  z-index: 5;
 }
 
 .video-float:hover .video-title {
   opacity: 1;
 }
-
-.circle-play {
-  width: 36px;
-  height: 36px;
-  color: var(--white);
-  /* padding: 83px 162px;
-  z-index: 500; */
-}
-/* .video-name {
-  width: 360px;
-  height: 72px;
-}
-.video-title {
-  color: var(--white);
-  position: absolute;
-  bottom: 8px;
-  left: 8px;
-  font-size: 16px;
-  opacity: 0;
-  transition: opacity 0.3s;
-  padding: 32px 50px 16px 16px;
-}
-
-.circle-play {
-  display: none;
-  width: 36px;
-  height: 36px;
-  color: var
-  padding: 83px 162px;
-  z-index: 500;
-}
-
-.video-float:hover .video-title {
-  opacity: 1;
-}
-.video-float:hover .circle-play {
-  opacity: 33%;
-} */
 
 .video-float.sticky {
   position: fixed;

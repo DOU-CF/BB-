@@ -207,3 +207,56 @@
     </script>
   </body>
 </html>
+
+<!-- RWD 選項面板 -->
+
+<div class="offcanvas offcanvas-end" tabindex="-1" id="filterOffcanvas">
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title">篩選</h5>
+    <button
+      type="button"
+      class="btn-close"
+      data-bs-dismiss="offcanvas"
+    ></button>
+  </div>
+
+  <div class="offcanvas-body">
+    <!-- 放你的篩選條件（可複製 col-md-3 內容） -->
+    <div class="filter-section">
+      <h6>分類</h6>
+      <ul class="list-unstyled">
+        <li>
+          <label><input type="checkbox" /> 嬰兒服飾</label>
+        </li>
+        <li>
+          <label><input type="checkbox" /> 男孩服飾</label>
+        </li>
+        <li>
+          <label><input type="checkbox" /> 女孩服飾</label>
+        </li>
+      </ul>
+    </div>
+    <hr />
+    <div class="price-section">
+      <h6>價格範圍</h6>
+      <div class="d-flex align-items-center">
+        <input type="number" class="form-control me-2" placeholder="$最低" />
+        <span>-</span>
+        <input type="number" class="form-control ms-2" placeholder="$最高" />
+      </div>
+    </div>
+  </div>
+
+  <div class="offcanvas-footer border-top p-3 d-flex justify-content-between">
+    <button class="btn btn-outline-secondary col-md-2" type="button">
+      全部重設
+    </button>
+    <button
+      class="btn btn-primary col-md-2"
+      type="button"
+      data-bs-dismiss="offcanvas"
+    >
+      篩選
+    </button>
+  </div>
+</div>

@@ -200,13 +200,16 @@ a {
 }
 
 body {
-  background-color: var(--gray-100);
+  background-color: var(--gray-50);
 }
 
 /* 通用樣式 */
 .container {
-  width: 1296px;
+  max-width: 1320px;
   margin: 0 auto; /* 置中 */
+  /* 避免螢幕縮小，內容貼齊邊緣 */
+  padding-left: 12px;
+  padding-right: 12px;
 }
 
 .row {
@@ -279,14 +282,18 @@ body {
 
 .d-flex {
   display: flex;
-  align-items: center;
-  justify-content: start;
+}
+.d-none {
+  display: none;
 }
 
 .justify-between {
   justify-content: space-between;
 }
 
+.justify-start {
+  justify-content: flex-start;
+}
 .justify-end {
   justify-content: flex-end;
 }
@@ -375,9 +382,15 @@ body {
   padding-top: 8px;
   padding-bottom: 8px;
 }
+
+.py-80 {
+  padding-top: 80px;
+  padding-bottom: 80px;
+}
 .pt-120 {
   padding-top: 120px;
 }
+
 .pt-83 {
   padding-top: 83px;
 }
@@ -390,7 +403,9 @@ body {
 .mt-12 {
   margin-top: 12px;
 }
-
+.mt-120 {
+  margin-top: 120px;
+}
 .mb-16 {
   margin-bottom: 16px;
 }
@@ -409,6 +424,13 @@ body {
 }
 .mb-48 {
   margin-bottom: 48px;
+}
+.mb-80 {
+  margin-bottom: 80px;
+}
+
+.mb-160 {
+  margin-bottom: 160px;
 }
 .pl-36 {
   padding-left: 36px;
@@ -431,6 +453,24 @@ body {
 .mr-12 {
   margin-right: 12px;
 }
+
+.py-8 {
+  padding-top: 8px;
+  padding-bottom: 8px;
+}
+
+.py-80 {
+  padding-top: 80px;
+  padding-bottom: 80px;
+}
+
+.pe-8 {
+  padding-right: 8px;
+}
+.pe-12 {
+  padding-right: 12px;
+}
+
 /* page 頁面的樣式設定 */
 
 .filter-option {
@@ -442,18 +482,7 @@ body {
 .category-list {
   display: flex;
   flex-direction: column;
-}
-
-.py-8 {
-  padding-top: 8px;
-  padding-bottom: 8px;
-}
-
-.pe-8 {
-  padding-right: 8px;
-}
-.pe-12 {
-  padding-right: 12px;
+  color: var(--gray-800);
 }
 
 .lucide {
@@ -461,9 +490,9 @@ body {
   vertical-align: middle;
   margin-right: 12px;
 }
+
 .banner {
-  /* position: relative; */
-  height: 808px;
+  /* height: 808px; */
   overflow: hidden;
 }
 
@@ -474,6 +503,7 @@ body {
   filter: blur(10px);
   opacity: 0.5;
   transform: scale(1.05);
+  z-index: 1; /* 最底層 - 模糊背景 */
 }
 .container .banner_product_ad {
   position: relative;
@@ -481,10 +511,13 @@ body {
 
 .banner_product_ad {
   position: absolute;
-
+  border-radius: 40px;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 1296px;
   height: 648px;
   z-index: 2;
@@ -495,16 +528,93 @@ body {
   object-fit: contain; /* 保持比例 */
   border-radius: 40px; /* 你設計稿的圓角 */
   display: block;
-  z-index: 2;
+  z-index: 2; /* 中間層 - 主要廣告圖 */
   position: relative;
 }
-/*
-.banner_product_ad img.active {
-  display: block;
-}*/
-.border-bottom {
+
+.banner .carousel-btn,
+.custom-indicators {
+  z-index: 3; /* 最上層 - 按鈕和指示器 */
+}
+
+/* ========== 輪播 Indicators 樣式 ========== */
+/* --- Carousel 指示器 --- */
+.custom-indicators {
+  position: absolute;
+  bottom: 24px; /* 在 banner 圖片下方 */
+  left: 50%; /* 水平置中 */
+  transform: translateX(-50%);
+  z-index: 3;
+  /* padding-top: 541px;
+  padding-bottom: 104px; */
+}
+
+/* --- 每個 indicator --- */
+.custom-indicators button {
+  background-color: var(--gray-400);
+  border: none;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+/* --- active 狀態：變橫線、顏色加深 --- */
+.custom-indicators button.active {
+  width: 48px;
+  border-radius: 4px;
+  background-color: var(--white);
+}
+
+.carousel-item {
+  position: relative;
+}
+
+/* Lucide 左右 箭頭自訂 */
+.banner .carousel-btn.pre {
+  left: calc((100vw - 1296px) / 2); /* 貼齊容器左邊緣 */
+}
+
+.banner .carousel-btn.next {
+  right: calc((100vw - 1296px) / 2); /* 貼齊容器右邊緣 */
+}
+
+.carousel-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 40px;
+  height: 40px;
+  background: rgba(255, 255, 255, 1);
+  border-radius: 50%;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 2px 0px 0px rgba(0, 0, 0, 0.25);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  z-index: 2;
+}
+
+.carousel-btn:hover {
+  background: rgba(242, 242, 244, 1);
+  box-shadow: inset 0px 2px 0px 0px rgba(0, 0, 0, 0.2);
+}
+
+.carousel-btn svg {
+  width: 20px;
+  height: 20px;
+  color: var(--gray-600);
+}
+
+.carousel-btn:hover svg {
+  stroke: var(--black); /* 黑色 */
+}
+
+/* ========== Checkbox 樣式 ========== */
+.divider {
   border-bottom: 1px solid var(--gray-400);
 }
+
 .category-list li {
   padding-left: 36px;
   padding-top: 8px;
@@ -524,60 +634,6 @@ body {
   margin: 0;
 }
 
-/* ========== 輪播 Indicators 樣式 ========== */
-/* --- Carousel 指示器 --- */
-.custom-indicators {
-  position: absolute;
-  bottom: 12px;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  gap: 8px;
-  z-index: 5;
-}
-
-/* --- 每個 indicator --- */
-.custom-indicators button {
-  background-color: var(--gray-400);
-  border: none;
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  transition: all 0.3s ease;
-  cursor: pointer;
-}
-
-/* --- active 狀態：變橫線、顏色加深 --- */
-.custom-indicators button.active {
-  width: 24px;
-  border-radius: 2px;
-  background-color: var(--white);
-}
-
-.carousel-item {
-  position: relative;
-}
-
-/* Lucide 左右 箭頭自訂 */
-.carousel-btn {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 40px;
-  height: 40px;
-  background: rgba(255, 255, 255, 1);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  box-shadow: 0px 2px 0px 0px rgba(0, 0, 0, 0.25);
-  cursor: pointer;
-  transition: all 0.3s ease;
-  z-index: 2;
-}
-
-/* ========== Checkbox 樣式 ========== */
 /* 隱藏原生 checkbox */
 input[type="checkbox"] {
   appearance: none;
@@ -712,7 +768,6 @@ input[type="checkbox"]:indeterminate::after {
   border: 1px solid var(--gray-400);
   border-radius: 24px;
   color: var(--white);
-  font-size: 16px;
   cursor: pointer;
   transition: all 0.3s;
 }
@@ -740,9 +795,7 @@ input[type="checkbox"]:indeterminate::after {
 }
 
 .sort-label {
-  font-size: 16px;
-  color: var(--gray-800);
-  font-weight: 500;
+  color: var(--gray-600);
   margin: 0;
 }
 
@@ -758,12 +811,8 @@ input[type="checkbox"]:indeterminate::after {
   border: 1px solid var(--gray-400);
   border-radius: 24px;
   text-align: left;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
   cursor: pointer;
-  font-size: 14px;
-  color: var(--gray-800);
+  color: var(--black);
 }
 
 .dropdown-toggle:focus {
@@ -808,12 +857,9 @@ input[type="checkbox"]:indeterminate::after {
 .dropdown-item {
   padding: 12px 8px;
   cursor: pointer;
-  font-size: 14px;
   border-radius: 16px;
   color: var(--gray-800);
   gap: 8px;
-  display: flex;
-  align-items: center;
   transition: background-color 0.3s;
 }
 
@@ -841,8 +887,8 @@ dropdown-item:focus {
 }
 
 .product-card {
-  width: 306px;
-  height: 455px;
+  width: 100%;
+  /* height: 455px; */
   border-radius: 40px 40px 0 0;
   /* 使內容不會超出圓角 */
   overflow: visible;
@@ -853,7 +899,7 @@ dropdown-item:focus {
 }
 
 .product-image {
-  width: 306px;
+  width: 100%;
   height: 354px;
   background-color: var(--white);
   overflow: hidden;
@@ -868,7 +914,7 @@ dropdown-item:focus {
   top: 0;
   left: 0;
   width: 100%;
-  height: auto;
+  aspect-ratio: 1; /* 保持 1:1 比例 */
   transition: filter 0.3s ease;
 }
 
@@ -993,98 +1039,114 @@ dropdown-item:focus {
   color: var(--primary-400);
 }
 
+/* 分頁按鈕 */
+.pagination-wrapper ul {
+  gap: 12px; /* 按鈕間距 */
+  list-style: none;
+  padding: 0;
+}
+.page-btn {
+  width: 40px;
+  height: 40px;
+  color: var(--gray-800);
+  background-color: var(--gray-50);
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.page-btn:hover {
+  background: var(--white);
+}
+
+/* Arrow icons */
+.page-btn svg {
+  width: 20px;
+  height: 20px;
+  stroke: var(--gray-800);
+}
+
+/* disabled 狀態 */
+.page-btn.disabled,
+.page-btn:disabled {
+  background-color: var(--gray-100);
+  color: var(--gray-400);
+  cursor: not-allowed;
+}
+/* 啟用中（active）狀態 */
+.page-btn.active,
+.page-item .btn.active {
+  background-color: var(--primary-500);
+  color: var(--white);
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.5;
+  letter-spacing: 0;
+}
+
 /* 最近看過 */
 .recent-viewed {
+  padding: 0;
+  flex-wrap: nowrap;
+  background-color: var(--gray-100);
+}
+
+.recent-carousel {
   position: relative;
 }
 
 .recent-wrapper {
-  display: flex;
-  overflow-x: auto;
+  overflow: hidden;
+  /* 隱藏超出的部分 */
+  overflow-x: scroll;
   scroll-behavior: smooth;
   gap: 24px;
   padding: 0;
-  scrollbar-width: none;
-}
 
+  scrollbar-width: none;
+  flex-wrap: nowrap;
+  /* 強制 flex 子元素不換行 */
+}
 .recent-wrapper::-webkit-scrollbar {
   display: none;
 }
 
-.recent-item img {
-  width: 306px;
-  height: 306px;
-  border-radius: 8px;
-  object-fit: cover;
-}
-
-.recent-viewed .carousel-btn {
-  top: 50%;
-  transform: translateY(-50%);
-}
-
-.carousel-btn {
+.recent-carousel .carousel-btn {
   position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 40px;
-  height: 40px;
-  background: rgba(255, 255, 255, 1);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  box-shadow: 0px 2px 0px 0px rgba(0, 0, 0, 0.25);
-  cursor: pointer;
-  transition: all 0.3s ease;
-  z-index: 2;
+  top: 144px;
+
+  z-index: 10;
 }
 
-.carousel-btn:hover {
-  background: rgba(242, 242, 244, 1);
-  box-shadow: inset 0px 2px 0px 0px rgba(0, 0, 0, 0.2);
+.recent-viewed .carousel-btn.prev {
+  left: -20px; /* 向外推一半 */
 }
 
-.carousel-btn.prev {
-  left: 0;
-}
-
-.carousel-btn.next {
-  right: 0;
-}
-
-.carousel-btn svg {
-  width: 20px;
-  height: 20px;
-  color: var(--gray-600);
-}
-
-.carousel-btn:hover svg {
-  stroke: var(--black); /* 黑色 */
+.recent-viewed .carousel-btn.next {
+  right: -20px;
 }
 
 /* 影音廣告 */
 .video-float {
   position: fixed;
   bottom: 24px;
-  right: 24px;
+  right: 0px;
   width: 360px;
   height: 203px;
-  z-index: 100;
+  z-index: 99;
   cursor: pointer;
   border-radius: 24px;
   overflow: hidden;
-  background: rgba(0, 0, 0, 0.5);
-  display: flex;
+  /* background: rgba(0, 0, 0, 0.5); */
+  display: block;
   flex-direction: column;
   align-items: center;
   justify-content: center;
 }
 
-.video-float:hover {
+/* .video-float:hover {
   background: rgba(0, 0, 0, 0.7);
-}
+} */
 
 .video-float img {
   width: 100%;
@@ -1103,7 +1165,7 @@ dropdown-item:focus {
   width: 36px;
   height: 36px;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.8);
+  /* background: rgba(255, 255, 255, 0.8); */
   border: none;
   transition: background 0.3s ease;
   opacity: 0;
@@ -1141,6 +1203,485 @@ dropdown-item:focus {
 .video-float.sticky {
   position: fixed;
   bottom: 24px;
-  right: 24px;
-  z-index: 300;
+  right: 0px;
+  z-index: 99;
+}
+
+/* 手機版 ⋯ 彈出面板 */
+.mobile-action-menu {
+  position: fixed;
+  bottom: -100%;
+  left: 0;
+  width: 100%;
+  transition: bottom 0.3s ease;
+  z-index: 100;
+}
+
+.mobile-action-menu.active {
+  bottom: 0;
+}
+
+.menu-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.3);
+}
+
+.menu-panel {
+  background: var(--white);
+  border-radius: 16px 16px 0 0;
+  padding: 16px 24px;
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.menu-close {
+  border: none;
+  background: transparent;
+  position: absolute;
+  top: 12px;
+  right: 12px;
+}
+
+.menu-btn {
+  width: 100%;
+  background: none;
+  border: none;
+  padding: 12px 0;
+  font-size: 16px;
+  color: var(--gray-800);
+  transition: background 0.3s;
+}
+.menu-btn:hover {
+  background: var(--gray-100);
+}
+
+/* ==================== RWD 響應式設計 ==================== */
+@media (max-width: 767px) {
+  .h3-md {
+    /* 同原.paragraph-body  */
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1.5;
+    letter-spacing: 0.5px;
+  }
+
+  .paragraph-body-md {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1.5;
+    letter-spacing: 0.5px;
+  }
+  .paragraph-body-bold-md {
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 1.5;
+    letter-spacing: 0.5px;
+  }
+  .paragraph-body-small-md {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 1.5;
+    letter-spacing: 0px;
+  }
+
+  .paragraph-body-xs-md {
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 1.5;
+    letter-spacing: 0px;
+  }
+
+  .h6-md {
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 1.2;
+    letter-spacing: 0.5px;
+  }
+
+  .d-md-none {
+    display: none;
+  }
+  .d-md-block {
+    display: block;
+  }
+
+  .px-md-12 {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+  .py-md-16 {
+    padding-top: 16px;
+    padding-bottom: 16px;
+  }
+  .py-md-48 {
+    padding-top: 48px;
+    padding-bottom: 48px;
+  }
+
+  .mt-md-48 {
+    margin-top: 48px;
+  }
+  .mb-md-16 {
+    margin-bottom: 16px;
+  }
+  .mb-md-24 {
+    margin-bottom: 24px;
+  }
+
+  .mb-md-48 {
+    margin-bottom: 48px;
+  }
+
+  .mb-md-4 {
+    margin-bottom: 4px;
+  }
+
+  .mb-md-8 {
+    margin-bottom: 8px;
+  }
+  .me-md-12 {
+    margin-right: 12px;
+  }
+
+  .row {
+    margin-left: -12px;
+    margin-right: -12px;
+  }
+  .col-md-1 {
+    padding-left: 12px;
+    padding-right: 12px;
+    width: calc(100% / 4);
+  }
+  .col-md-2 {
+    padding-left: 12px;
+    padding-right: 12px;
+    width: calc(100% / 4 * 2);
+  }
+  .col-md-3 {
+    padding-left: 12px;
+    padding-right: 12px;
+    width: calc(100% / 4 * 3);
+  }
+  .col-md-4 {
+    padding-left: 12px;
+    padding-right: 12px;
+    width: 100%;
+  }
+  .pl-md-16 {
+    padding-left: 16px;
+  }
+
+  .banner-mobile img {
+    max-width: 100%;
+    border-top: 4px solid var(--primary-900);
+    border-radius: 0 0 24px 24px;
+    display: block;
+  }
+
+  /* 放大鏡 */
+  .search-bar {
+    position: relative;
+    width: 255px;
+  }
+  .search-bar .search-input {
+    width: 100%;
+    height: 48px;
+    border-radius: 24px;
+    border: 1px solid #ced4da;
+    padding: 12px 16px 12px 40px; /* 左邊留空放 icon */
+  }
+  .search-bar .search-icon {
+    position: absolute;
+    left: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--primary-400);
+  }
+
+  .search-input {
+    height: 48px;
+    border-radius: 24px;
+    padding: 12px 16px;
+  }
+
+  /* 🔍 搜尋列 */
+  .search-bar {
+    padding: 16px 0;
+    border-bottom: 1px solid var(--gray-200);
+  }
+
+  .search-input-wrapper {
+    background: var(--gray-100);
+    border-radius: 24px;
+    padding: 8px 16px;
+    flex: 1;
+  }
+
+  .search-input {
+    border: none;
+    background: transparent;
+    width: 100%;
+    outline: none;
+    font-size: 16px;
+  }
+
+  .filter-btn {
+    background: var(--white);
+    border: 1px solid var(--gray-300);
+    border-radius: 24px;
+    padding: 8px 16px;
+    color: var(--gray-800);
+    transition: all 0.3s ease;
+  }
+
+  .filter-btn:hover {
+    background: var(--gray-50);
+  }
+
+  /* Banner */
+  .banner-scroll {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .banner-scroll img {
+    flex: 0 0 100%;
+    scroll-snap-align: start;
+    object-fit: cover;
+  }
+
+  .banner-scroll::-webkit-scrollbar {
+    display: none;
+  }
+  .banner-mobile img {
+    width: 100%;
+    border-top: 4px solid var(--primary-900);
+    border-radius: 0 0 24px 24px;
+    display: flex;
+  }
+
+  .custom-indicators button {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    border: none;
+    margin: 0 4px;
+    background-color: var(--gray-300);
+  }
+
+  .custom-indicators button.active {
+    background-color: var(--primary-500);
+  }
+
+  /* 篩選面板 */
+  .filter-panel {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 85%;
+    max-width: 420px;
+    height: 100vh;
+    background: var(--white);
+    box-shadow: -4px 0 16px rgba(0, 0, 0, 0.1);
+    transition: right 0.3s ease;
+    z-index: 1050;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .filter-panel.active {
+    right: 0;
+  }
+
+  .filter-header {
+    padding: 16px;
+    border-bottom: 1px solid var(--gray-200);
+  }
+
+  .filter-body {
+    flex: 1;
+    overflow-y: auto;
+    padding: 16px;
+  }
+
+  .filter-group {
+    margin-bottom: 24px;
+  }
+
+  .filter-group h4 {
+    font-size: 16px;
+    margin-bottom: 12px;
+    color: var(--gray-800);
+  }
+
+  .options label {
+    display: block;
+    margin-bottom: 8px;
+    color: var(--gray-700);
+  }
+
+  .price-range input {
+    width: 100%;
+    max-width: 120px;
+    border: 1px solid var(--gray-300);
+    border-radius: 8px;
+    padding: 4px 8px;
+  }
+
+  /* footer buttons */
+  .filter-footer {
+    padding: 16px;
+    border-top: 1px solid var(--gray-200);
+  }
+
+  .reset-btn {
+    background: var(--gray-100);
+    color: var(--gray-600);
+    border-radius: 24px;
+    padding: 8px 24px;
+  }
+
+  .apply-btn {
+    background: var(--primary-500);
+    color: var(--white);
+    border-radius: 24px;
+    padding: 8px 24px;
+  }
+
+  .mobile-filter-bar,
+  #filterPanel {
+    display: none;
+  }
+
+  .product-card img {
+    border-radius: 24px;
+    border: 1px solid var(--gray-300);
+  }
+
+  /* --- 手機版要放到 product-info 的藍色 tag：白底藍框 --- */
+  .badge-blue--mobile {
+    color: var(--primary-500);
+    border: 1px solid var(--primary-500);
+    padding: 0 4px;
+    border-radius: 4px;
+    display: inline-block;
+    margin-bottom: 4px;
+    background-color: var(--white);
+  }
+  .product-image .badge {
+    top: 0px;
+    left: 0px;
+    padding: 8px;
+  }
+
+  /* 圖片上的藍色標籤預設已被 d-none 隱藏，這裡為保險再確保 */
+  /* .product-image .badge .badge-blue.d-none {
+    display: none !important;
+  } */
+  .product-card {
+    height: auto;
+    background-color: var(--white);
+  }
+
+  .product-image {
+    height: auto;
+    padding-bottom: 120px; /* 預留空間給 product-info */
+    position: relative;
+  }
+
+  .product-info {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: var(--white);
+    border-radius: 0 0 40px 40px;
+    padding: 16px;
+    box-shadow: 0 -4px 0 rgba(0, 0, 0, 0.05);
+  }
+
+  /* 修正圖片 */
+  .product-image img {
+    position: relative;
+    width: 100%;
+    height: auto;
+    border-radius: 40px 40px 0 0;
+    display: block;
+  }
+
+  /* 移除下方多餘間距 */
+  .product-card .product-info + * {
+    margin-top: 0;
+  }
+
+  .product-image::after {
+    content: "⋯";
+    position: absolute;
+    bottom: 8px;
+    right: 16px;
+    background: white;
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    text-align: center;
+    line-height: 32px;
+    font-size: 24px;
+    color: var(--gray-700);
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+  }
+
+  /* 手機版隱藏原本的分享聊聊，改成「⋯」 */
+  .product-actions {
+    display: none;
+  }
+  .more-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border: none;
+    background: transparent;
+    position: absolute;
+    bottom: 8px;
+    right: 12px;
+  }
+
+  .more-btn svg {
+    color: var(--gray-800);
+    width: 24px;
+    height: 24px;
+  }
+
+  /* 點開後展開動作列 */
+  .product-card.show-actions .product-actions {
+    display: flex;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    background: var(--white);
+    width: 100%;
+  }
+
+  /* ========== 最近看過區塊 ========== */
+  .recent-viewed {
+    overflow-x: auto;
+    display: flex;
+    gap: 16px;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    padding: 0 12px;
+  }
+
+  .recent-viewed::-webkit-scrollbar {
+    display: none;
+  }
+
+  .recent-viewed .product-card {
+    flex: 0 0 80%; /* 1.3 張效果 */
+    scroll-snap-align: start;
+  }
 }

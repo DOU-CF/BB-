@@ -82,24 +82,30 @@
         </div>
       </div>
 
-      <!-- 手機版 -->
-      <div class="banner-mobile d-block d-md-none">
-        <img
-          src="../assets/images/products-Images/product_ad_01_mobile.jpg"
-          alt="行動版ad01"
-        />
-      </div>
-      <div class="banner-mobile d-block d-md-none">
-        <img
-          src="../assets/images/products-Images/product_ad_02_mobile.jpg"
-          alt="行動版ad02"
-        />
-      </div>
-      <div class="banner-mobile d-block d-md-none">
-        <img
-          src="../assets/images/products-Images/product_ad_03_mobile.jpg"
-          alt="行動版ad03"
-        />
+      <!-- 手機版：合併成一個可以左右滑動的容器（scroll-snap） -->
+      <div
+        class="banner-scroll d-block d-md-none"
+        role="region"
+        aria-label="mobile-banner"
+      >
+        <div class="banner-item">
+          <img
+            src="../assets/images/products-Images/product_ad_01_mobile.jpg"
+            alt="ad01-mobile"
+          />
+        </div>
+        <div class="banner-item">
+          <img
+            src="../assets/images/products-Images/product_ad_02_mobile.jpg"
+            alt="ad02-mobile"
+          />
+        </div>
+        <div class="banner-item">
+          <img
+            src="../assets/images/products-Images/product_ad_03_mobile.jpg"
+            alt="ad03-mobile"
+          />
+        </div>
       </div>
 
       <!-- Indicators 指示器 -->
@@ -125,33 +131,41 @@
 
       <!-- 可選：左右箭頭 -->
       <button
-        class="carousel-btn button pre d-flex align-center justify-center"
+        class="carousel-btn button pre d-none d-md-flex align-center justify-center"
         type="button"
         data-bs-target="#bannerCarousel"
         data-bs-slide="prev"
+        aria-label="上一張"
       >
         <i class="lucide" data-lucide="chevron-left"></i>
       </button>
 
       <button
-        class="carousel-btn button next d-flex align-center justify-center"
+        class="carousel-btn button next d-none d-md-flex align-center justify-center"
         type="button"
         data-bs-target="#bannerCarousel"
         data-bs-slide="next"
+        aria-label="下一張"
       >
         <i class="lucide" data-lucide="chevron-right"></i>
       </button>
     </section>
 
     <main class="container pt-120 pb-160 py-md-48">
-      <div class="row searching d-flex align-items-center">
-        <div class="col-md-3 search-bar position-relative me-2">
-          <i data-lucide="search" class="search-icon me-2"></i>
+      <div class="searching d-flex align-center d-none d-md-flex">
+        <div class="search-bar col-md-3 position-relative">
+          <i data-lucide="search" class="search-icon me-md-12"></i>
           <input type="text" class="search-input" placeholder="我要找寶物" />
         </div>
-        <button class="button filter-btn d-flex align-center">
+        <button
+          class="button filter-btn d-flex align-center"
+          type="button"
+          data-bs-toggle="offcanvas"
+          data-bs-target="#filterOffcanvas"
+          aria-controls="filterOffcanvas"
+        >
           <i data-lucide="settings-2" class="me-8"></i>
-          <h5 class="paragraph-body-md">篩選</h5>
+          <span class="paragraph-body-md button">篩選</span>
         </button>
       </div>
 
@@ -1221,120 +1235,223 @@
       </div>
     </main>
 
-    <!-- 手機版篩選列 -->
-    <div
-      class="mobile-filter-bar d-flex align-items-center justify-content-between d-md-none"
-    >
-      <!-- 觸發 Offcanvas 的按鈕 -->
-      <button
-        class="btn filter-btn d-flex align-items-center"
-        type="button"
-        data-bs-toggle="offcanvas"
-        data-bs-target="#filterOffcanvas"
-        aria-controls="filterOffcanvas"
-      >
-        <i data-lucide="chevron-left" class="me-1"></i>
-        篩選
-      </button>
-    </div>
-
-    <!-- Offcanvas 篩選面板 -->
+    <!-- Offcanvas 篩選面板（右側滑出；header 左側箭頭，可關閉） -->
     <div
       class="offcanvas offcanvas-end"
       tabindex="-1"
       id="filterOffcanvas"
       aria-labelledby="offcanvasFilterLabel"
     >
-      <div class="offcanvas-header">
-        <h5 class="offcanvas-title" id="offcanvasFilterLabel">篩選條件</h5>
+      <div class="offcanvas-header align-items-center">
+        <!-- 左側箭頭（像設計圖） -->
         <button
+          id="filterBackBtn"
           type="button"
-          class="btn-close"
-          data-bs-dismiss="offcanvas"
-          aria-label="Close"
-        ></button>
+          class="btn btn-link p-0 me-2"
+          aria-label="關閉篩選"
+        >
+          <i data-lucide="chevron-left"></i>
+        </button>
+        <h5 class="offcanvas-title" id="offcanvasFilterLabel">篩選</h5>
       </div>
 
       <div class="offcanvas-body">
-        <!-- 狀態 -->
-        <section class="mb-3">
-          <i data-lucide="bookmark" class="me-2"></i>
-          <h6 class="fw-bold">狀態</h6>
+        <!-- 狀態（checkbox pill） -->
+        <section class="mb-4">
+          <div class="section-title d-flex align-items-center mb-2">
+            <i data-lucide="bookmark" class="me-2 text-primary-400"></i>
+            <strong>狀態</strong>
+          </div>
+
           <div class="d-flex flex-wrap gap-2">
-            <label><input type="checkbox" class="me-1" /> 全新</label>
-            <label><input type="checkbox" class="me-1" /> 九成新</label>
-            <label><input type="checkbox" class="me-1" /> 七成新以下</label>
-            <label><input type="checkbox" class="me-1" /> 以物易物</label>
-            <label><input type="checkbox" class="me-1" /> 可捐贈</label>
+            <label class="pill">
+              <input type="checkbox" name="status" value="brandnew" />
+              <span class="pill-check" aria-hidden="true"></span>
+              <span class="pill-text">全新</span>
+            </label>
+
+            <label class="pill">
+              <input type="checkbox" name="status" value="fairly_new" />
+              <span class="pill-check" aria-hidden="true"></span>
+              <span class="pill-text">九成新</span>
+            </label>
+
+            <label class="pill">
+              <input type="checkbox" name="status" value="below_70" />
+              <span class="pill-check" aria-hidden="true"></span>
+              <span class="pill-text">七成新以下</span>
+            </label>
+
+            <label class="pill">
+              <input type="checkbox" name="status" value="exchange" />
+              <span class="pill-check" aria-hidden="true"></span>
+              <span class="pill-text">以物易物</span>
+            </label>
+
+            <label class="pill">
+              <input type="checkbox" name="status" value="donate" />
+              <span class="pill-check" aria-hidden="true"></span>
+              <span class="pill-text">可捐贈</span>
+            </label>
           </div>
         </section>
 
-        <!-- 篩選條件 -->
-        <section class="mb-3">
-          <i data-lucide="funnel" class="me-2"></i>
-          <h6 class="fw-bold">篩選條件</h6>
+        <!-- 排序（radio pill） -->
+        <section class="mb-4">
+          <div class="section-title d-flex align-items-center mb-2">
+            <i data-lucide="sliders" class="me-2 text-primary-400"></i>
+            <strong>排序</strong>
+          </div>
+
           <div class="d-flex flex-wrap gap-2">
-            <label><input type="checkbox" class="me-1" /> 嬰兒服飾</label>
-            <label><input type="checkbox" class="me-1" /> 男孩服飾</label>
-            <label><input type="checkbox" class="me-1" /> 女孩服飾</label>
-            <label><input type="checkbox" class="me-1" /> 玩具</label>
-            <label><input type="checkbox" class="me-1" /> 育兒書籍</label>
-            <label><input type="checkbox" class="me-1" /> 哺乳用品</label>
-            <label><input type="checkbox" class="me-1" /> 推車</label>
-            <label><input type="checkbox" class="me-1" /> 揹巾</label>
-            <label><input type="checkbox" class="me-1" /> 安全座椅</label>
-            <label><input type="checkbox" class="me-1" /> 媽媽用品</label>
+            <label class="pill pill-radio">
+              <input type="radio" name="sort" value="latest" checked />
+              <span class="pill-check" aria-hidden="true"></span>
+              <span class="pill-text">最新上架</span>
+            </label>
+
+            <label class="pill pill-radio">
+              <input type="radio" name="sort" value="price_asc" />
+              <span class="pill-check" aria-hidden="true"></span>
+              <span class="pill-text">價格由低到高</span>
+            </label>
+
+            <label class="pill pill-radio">
+              <input type="radio" name="sort" value="price_desc" />
+              <span class="pill-check" aria-hidden="true"></span>
+              <span class="pill-text">價格由高到低</span>
+            </label>
           </div>
         </section>
 
-        <!-- 位置 -->
-        <section class="mb-3">
-          <i data-lucide="map-pin" class="me-2"></i>
-          <h6 class="fw-bold">位置（依地區）</h6>
+        <!-- 篩選條件（categories） -->
+        <section class="mb-4">
+          <div class="section-title d-flex align-items-center mb-2">
+            <i data-lucide="filter" class="me-2 text-primary-400"></i>
+            <strong>篩選條件</strong>
+          </div>
+
           <div class="d-flex flex-wrap gap-2">
-            <label><input type="checkbox" class="me-1" /> 台北</label>
-            <label><input type="checkbox" class="me-1" /> 新北</label>
-            <label><input type="checkbox" class="me-1" /> 桃園</label>
-            <label><input type="checkbox" class="me-1" /> 台中</label>
-            <label><input type="checkbox" class="me-1" /> 高雄</label>
+            <label class="pill">
+              <input type="checkbox" name="cat" value="baby_clothes" />
+              <span class="pill-check" aria-hidden="true"></span>
+              <span class="pill-text">嬰兒服飾</span>
+            </label>
+
+            <label class="pill">
+              <input type="checkbox" name="cat" value="boy_clothes" checked />
+              <span class="pill-check" aria-hidden="true"></span>
+              <span class="pill-text">男孩服飾</span>
+            </label>
+
+            <label class="pill">
+              <input type="checkbox" name="cat" value="girl_clothes" />
+              <span class="pill-check" aria-hidden="true"></span>
+              <span class="pill-text">女孩服飾</span>
+            </label>
+
+            <label class="pill">
+              <input type="checkbox" name="cat" value="toys" />
+              <span class="pill-check" aria-hidden="true"></span>
+              <span class="pill-text">玩具</span>
+            </label>
+
+            <label class="pill">
+              <input type="checkbox" name="cat" value="books" />
+              <span class="pill-check" aria-hidden="true"></span>
+              <span class="pill-text">育兒書籍</span>
+            </label>
+
+            <label class="pill">
+              <input type="checkbox" name="cat" value="nursing" />
+              <span class="pill-check" aria-hidden="true"></span>
+              <span class="pill-text">哺乳用品</span>
+            </label>
+
+            <!-- add more as needed -->
           </div>
         </section>
 
-        <!-- 排序 -->
-        <section class="mb-3">
-          <i data-lucide="list-filter" class="me-2"></i>
-          <h6 class="fw-bold">排序</h6>
-          <label
-            ><input type="radio" name="sort" checked class="me-1" />
-            最新上架</label
-          >
-          <label
-            ><input type="radio" name="sort" class="me-1" /> 價格由低到高</label
-          >
-          <label
-            ><input type="radio" name="sort" class="me-1" /> 價格由高到低</label
-          >
+        <!-- 地區 -->
+        <section class="mb-4">
+          <div class="section-title d-flex align-items-center mb-2">
+            <i data-lucide="map-pin" class="me-2 text-primary-400"></i>
+            <strong>地區（依位置）</strong>
+          </div>
+
+          <div class="d-flex flex-wrap gap-2">
+            <label class="pill">
+              <input type="checkbox" name="region" value="taipei" />
+              <span class="pill-check" aria-hidden="true"></span>
+              <span class="pill-text">台北</span>
+            </label>
+
+            <label class="pill">
+              <input type="checkbox" name="region" value="newtaipei" />
+              <span class="pill-check" aria-hidden="true"></span>
+              <span class="pill-text">新北</span>
+            </label>
+
+            <label class="pill">
+              <input type="checkbox" name="region" value="taoyuan" />
+              <span class="pill-check" aria-hidden="true"></span>
+              <span class="pill-text">桃園</span>
+            </label>
+
+            <label class="pill">
+              <input type="checkbox" name="region" value="taichung" />
+              <span class="pill-check" aria-hidden="true"></span>
+              <span class="pill-text">台中</span>
+            </label>
+
+            <label class="pill">
+              <input type="checkbox" name="region" value="kaohsiung" />
+              <span class="pill-check" aria-hidden="true"></span>
+              <span class="pill-text">高雄</span>
+            </label>
+          </div>
         </section>
 
         <!-- 價格範圍 -->
-        <section>
-          <i data-lucide="circle-dollar-sign" class="me-2 text-primary"></i>
-          <h6 class="fw-bold">價格範圍</h6>
-          <div class="d-flex align-items-center">
+        <section class="mb-4">
+          <div class="section-title d-flex align-items-center mb-2">
+            <i
+              data-lucide="circle-dollar-sign"
+              class="me-2 text-primary-400"
+            ></i>
+            <strong>價格範圍</strong>
+          </div>
+
+          <div class="d-flex gap-2 align-items-center">
             <input
               type="number"
-              class="form-control me-2"
-              placeholder="$最低價格"
+              class="form-control price-input"
+              placeholder="$ 最低價格"
             />
-            <span class="me-2">-</span>
-            <input type="number" class="form-control" placeholder="$最高價格" />
+            <span>-</span>
+            <input
+              type="number"
+              class="form-control price-input"
+              placeholder="$ 最高價格"
+            />
           </div>
         </section>
       </div>
 
-      <div class="offcanvas-footer d-flex justify-content-between p-3">
-        <button class="btn btn-outline-secondary">全部重設</button>
-        <button class="btn btn-primary">套用篩選</button>
+      <!-- 固定在面板底部的操作按鈕（Reset + Apply） -->
+      <div
+        class="offcanvas-footer d-flex justify-content-between align-items-center p-3"
+      >
+        <button
+          id="filterResetBtn"
+          type="button"
+          class="btn btn-outline-secondary w-50 me-2"
+        >
+          全部重設
+        </button>
+        <button id="filterApplyBtn" type="button" class="btn btn-primary w-50">
+          篩選
+        </button>
       </div>
     </div>
 
@@ -1851,18 +1968,87 @@
         // 初始化 Lucide Icons
         lucide.createIcons();
 
-        // ========== Banner Carousel ==========
+        // Ensure bootstrap JS is available
+        const filterOffcanvasEl = document.getElementById("filterOffcanvas");
+        const filterOffcanvas = filterOffcanvasEl
+          ? bootstrap.Offcanvas.getInstance(filterOffcanvasEl) ||
+            new bootstrap.Offcanvas(filterOffcanvasEl)
+          : null;
+
+        // Back arrow inside panel should close the offcanvas
+        const filterBackBtn = document.getElementById("filterBackBtn");
+        if (filterBackBtn && filterOffcanvas) {
+          filterBackBtn.addEventListener("click", () => {
+            filterOffcanvas.hide();
+          });
+        }
+
+        // Reset button inside panel - clear inputs within the offcanvas
+        const resetBtn = document.getElementById("filterResetBtn");
+        if (resetBtn && filterOffcanvasEl) {
+          resetBtn.addEventListener("click", () => {
+            filterOffcanvasEl.querySelectorAll("input").forEach((input) => {
+              if (input.type === "checkbox" || input.type === "radio")
+                input.checked = false;
+              else input.value = "";
+            });
+            // re-render icons if any changed visually
+            lucide.createIcons();
+          });
+        }
+
+        // Apply button - collect values (example) and close panel
+        const applyBtn = document.getElementById("filterApplyBtn");
+        if (applyBtn && filterOffcanvasEl) {
+          applyBtn.addEventListener("click", () => {
+            const form = filterOffcanvasEl; // simple scope
+            const data = {
+              status: Array.from(
+                form.querySelectorAll('input[name="status"]:checked')
+              ).map((i) => i.value),
+              sort:
+                (form.querySelector('input[name="sort"]:checked') || {})
+                  .value || null,
+              categories: Array.from(
+                form.querySelectorAll('input[name="cat"]:checked')
+              ).map((i) => i.value),
+              regions: Array.from(
+                form.querySelectorAll('input[name="region"]:checked')
+              ).map((i) => i.value),
+              priceMin: (form.querySelector(".price-input") || {}).value || "",
+              priceMax:
+                (form.querySelectorAll(".price-input")[1] || {}).value || "",
+            };
+            // TODO: 把 data 傳給搜尋 / API 或用在 client-side filter
+            console.log("Filter apply:", data);
+
+            // close panel
+            if (filterOffcanvas) filterOffcanvas.hide();
+          });
+        }
+
+        // Style interaction for pills: mark parent label when inside input is checked (support dynamic state)
+        document.querySelectorAll(".pill input").forEach((input) => {
+          const label = input.closest("label.pill");
+          function sync() {
+            if (input.checked) label.classList.add("is-checked");
+            else label.classList.remove("is-checked");
+          }
+          // init
+          sync();
+          input.addEventListener("change", sync);
+        });
+
+        // Banner indicators (desktop carousel) - keep previous logic but safe
         const carousel = document.getElementById("bannerCarousel");
         const indicators = document.querySelectorAll(
           ".custom-indicators button"
         );
-
         if (carousel && indicators.length > 0) {
           carousel.addEventListener("slide.bs.carousel", (event) => {
             indicators.forEach((el) => el.classList.remove("active"));
-            if (indicators[event.to]) {
+            if (indicators[event.to])
               indicators[event.to].classList.add("active");
-            }
           });
 
           indicators.forEach((el, index) => {
@@ -1874,265 +2060,10 @@
             });
           });
         }
-        // 手機版 ⋯ 展開控制
-        document.querySelectorAll(".action-btn.more-btn").forEach((btn) => {
-          btn.addEventListener("click", () => {
-            document.getElementById("actionMenu").classList.add("active");
-          });
-        });
-        document
-          .querySelector(".menu-overlay")
-          .addEventListener("click", () => {
-            document.getElementById("actionMenu").classList.remove("active");
-          });
-        document.querySelector(".menu-close").addEventListener("click", () => {
-          document.getElementById("actionMenu").classList.remove("active");
-        });
-        // ========== Dropdown 選項切換 ==========
-        document.querySelectorAll(".dropdown").forEach((dropdown) => {
-          const items = dropdown.querySelectorAll(".dropdown-item");
-          const toggleText = dropdown.querySelector(".sort-text");
 
-          items.forEach((item) => {
-            item.addEventListener("click", (e) => {
-              e.preventDefault();
-
-              // 移除所有 active
-              items.forEach((i) => i.classList.remove("active"));
-
-              // 加上當前的 active
-              item.classList.add("active");
-
-              // 更新顯示文字
-              toggleText.textContent = item.textContent.trim();
-
-              // 重新渲染 icons
-              lucide.createIcons();
-            });
-          });
-        });
-
-        // ========== 外出用品 Checkbox ==========
-        const parentCheckbox = document.getElementById("outdoor-parent");
-        const childCheckboxes = document.querySelectorAll(".outdoor-child");
-
-        if (parentCheckbox && childCheckboxes.length > 0) {
-          childCheckboxes.forEach((child) => {
-            child.addEventListener("change", () => {
-              const checkedCount = Array.from(childCheckboxes).filter(
-                (cb) => cb.checked
-              ).length;
-
-              if (checkedCount === 0) {
-                parentCheckbox.checked = false;
-                parentCheckbox.indeterminate = false;
-              } else if (checkedCount === childCheckboxes.length) {
-                parentCheckbox.checked = true;
-                parentCheckbox.indeterminate = false;
-              } else {
-                parentCheckbox.checked = false;
-                parentCheckbox.indeterminate = true;
-              }
-            });
-          });
-
-          parentCheckbox.addEventListener("change", () => {
-            const isChecked = parentCheckbox.checked;
-            childCheckboxes.forEach((cb) => (cb.checked = isChecked));
-            parentCheckbox.indeterminate = false;
-          });
-        }
-
-        // ========== 收藏按鈕 ==========
-        document.querySelectorAll(".favorite-btn").forEach((btn) => {
-          btn.addEventListener("click", function (e) {
-            e.preventDefault();
-            e.stopPropagation();
-            this.classList.toggle("active");
-          });
-        });
-
-        // ========== 清除全部按鈕 ==========
-        const clearBtn = document.querySelector(".btn-clear");
-        if (clearBtn) {
-          clearBtn.addEventListener("click", () => {
-            // 清除 checkbox
-            document
-              .querySelectorAll('input[type="checkbox"]')
-              .forEach((cb) => {
-                cb.checked = false;
-                cb.indeterminate = false;
-              });
-
-            // 清除價格
-            const minPrice = document.querySelector(".min-price");
-            const maxPrice = document.querySelector(".max-price");
-            if (minPrice) minPrice.value = "";
-            if (maxPrice) maxPrice.value = "";
-
-            // 重置 dropdown
-            document.querySelectorAll(".dropdown").forEach((dropdown) => {
-              const items = dropdown.querySelectorAll(".dropdown-item");
-              const toggleText = dropdown.querySelector(".sort-text");
-
-              items.forEach((i) => i.classList.remove("active"));
-              if (items[0]) {
-                items[0].classList.add("active");
-                toggleText.textContent = items[0].textContent.trim();
-              }
-            });
-
-            lucide.createIcons();
-          });
-        }
-
-        const recentWrapper = document.querySelector(".recent-wrapper");
-        const items = document.querySelectorAll(".recent-item .col-3");
-        const prevBtn = document.querySelector(
-          ".recent-viewed .carousel-btn.prev"
-        );
-        const nextBtn = document.querySelector(
-          ".recent-viewed .carousel-btn.next"
-        );
-
-        let currentIndex = 0;
-        const visibleCount = 4;
-
-        // 初始化：只顯示前 4 個
-        function updateVisibleItems() {
-          items.forEach((item, index) => {
-            item.style.display =
-              index >= currentIndex && index < currentIndex + visibleCount
-                ? "block"
-                : "none";
-          });
-        }
-
-        updateVisibleItems();
-
-        // 點擊左右箭頭
-        nextBtn.addEventListener("click", () => {
-          if (currentIndex + visibleCount < items.length) {
-            currentIndex++;
-            updateVisibleItems();
-          }
-        });
-
-        prevBtn.addEventListener("click", () => {
-          if (currentIndex > 0) {
-            currentIndex--;
-            updateVisibleItems();
-          }
-        });
-
-        // ========== 最近看過商品輪播（支援 RWD）==========
-
-        const recentPrevBtn = document.getElementById("recentPrev");
-        const recentNextBtn = document.getElementById("recentNext");
-
-        if (recentWrapper && recentPrevBtn && recentNextBtn) {
-          let currentIndex = 0;
-          let autoPlayInterval;
-
-          // 根據螢幕寬度決定顯示數量
-          function getVisibleCount() {
-            const width = window.innerWidth;
-            if (width <= 480) return 1;
-            if (width <= 767) return 2;
-            if (width <= 1295) return 3;
-            return 4;
-          }
-
-          // 計算最大索引
-          function getMaxIndex() {
-            const visibleCount = getVisibleCount();
-            return recentWrapper.children.length - visibleCount;
-          }
-
-          // 滾動到指定位置
-          function scrollToIndex(index) {
-            const itemWidth =
-              recentWrapper.querySelector(".recent-item").offsetWidth;
-            const gap = 24;
-            const scrollAmount = (itemWidth + gap) * index;
-
-            recentWrapper.scrollTo({
-              left: scrollAmount,
-              behavior: "smooth",
-            });
-          }
-
-          // 前一張
-          recentPrevBtn.addEventListener("click", () => {
-            if (currentIndex > 0) {
-              currentIndex--;
-              scrollToIndex(currentIndex);
-            }
-          });
-
-          // 下一張
-          recentNextBtn.addEventListener("click", () => {
-            const maxIndex = getMaxIndex();
-            if (currentIndex < maxIndex) {
-              currentIndex++;
-              scrollToIndex(currentIndex);
-            }
-          });
-
-          // 自動輪播
-          function startAutoPlay() {
-            autoPlayInterval = setInterval(() => {
-              const maxIndex = getMaxIndex();
-              if (currentIndex < maxIndex) {
-                currentIndex++;
-              } else {
-                currentIndex = 0;
-              }
-              scrollToIndex(currentIndex);
-            }, 3000);
-          }
-
-          // 停止自動輪播
-          function stopAutoPlay() {
-            clearInterval(autoPlayInterval);
-          }
-
-          // 滑鼠移入時暫停
-          recentWrapper.addEventListener("mouseenter", stopAutoPlay);
-
-          // 滑鼠移出時恢復
-          recentWrapper.addEventListener("mouseleave", startAutoPlay);
-
-          // 視窗大小改變時重置
-          window.addEventListener("resize", () => {
-            currentIndex = 0;
-            scrollToIndex(currentIndex);
-          });
-
-          // 啟動自動輪播
-          startAutoPlay();
-        }
-
-        // ========== Video Float Sticky ==========
-
-        const videoFloat = document.querySelector(".video-float");
-
-        if (videoFloat) {
-          window.addEventListener("scroll", () => {
-            if (window.scrollY > 200) {
-              videoFloat.classList.add("sticky");
-            } else {
-              videoFloat.classList.remove("sticky");
-            }
-          });
-        }
-
-        document.querySelectorAll(".more-btn").forEach((btn) => {
-          btn.addEventListener("click", (e) => {
-            const card = e.currentTarget.closest(".product-card");
-            card.classList.toggle("show-actions");
-          });
-        });
+        // recent-viewed: make mobile use native horizontal scroll; hide prev/next buttons on mobile
+        // (If you had previous button-driven logic, keep it only for desktop and guard with existence)
+        // --- no-op here because CSS handles hiding buttons on mobile --
       });
     </script>
   </body>

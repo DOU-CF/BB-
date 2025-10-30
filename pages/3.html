@@ -143,18 +143,175 @@
       </button>
     </section>
 
-    <main class="container pt-120 pb-160 py-md-48">
-      <div class="row searching d-flex align-items-center">
-        <div class="col-md-3 search-bar position-relative me-2">
-          <i data-lucide="search" class="search-icon me-2"></i>
+    <!-- 手機版 搜尋＋篩選列（main 外） -->
+    <!-- <section
+      class="mobile-filter-bar d-flex align-center justify-between py-md-48 d-md-none"
+    >
+      <div class="searching d-flex align-center justify-center">
+        <div class="search-bar col-md-3 position-relative">
+          <i data-lucide="search" class="search-icon me-md-12"></i>
           <input type="text" class="search-input" placeholder="我要找寶物" />
         </div>
-        <button class="button filter-btn d-flex align-center">
+        <button id="openFilter" class="button filter-btn d-flex align-center">
           <i data-lucide="settings-2" class="me-8"></i>
-          <h5 class="paragraph-body-md">篩選</h5>
+          <h5>篩選
         </button>
-      </div>
+      </div> -->
 
+      <!-- 篩選面板（從右側滑出） -->
+      <!-- <aside id="filterPanel" class="filter-panel">
+        <div lass="filter-header d-flex align-center justify-between">
+          <button class="button closeFilter d-flex align-center">
+            <i class="lucide me-8" data-lucide="chevron-left"></i>
+          </button>
+          <h3 class="paragraph-body">篩選</h3>
+        </div> -->
+
+        <!-- 篩選內容 -->
+
+        <!-- ⚙️ 篩選面板 -->
+        <!-- <div class="offcanvas offcanvas-end" tabindex="-1" id="filterPanel">
+          <div class="offcanvas-header">
+            <h5>篩選</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="offcanvas"
+            ></button>
+          </div>
+          <div class="offcanvas-body"> -->
+            <!-- 狀態 -->
+            <!-- <div class="filter-section">
+              <h6><i class="bi bi-bookmark"></i> 狀態</h6>
+              <div class="filter-options">
+                <button class="filter-btn">全新</button>
+                <button class="filter-btn">九成新</button>
+                <button class="filter-btn">七成新以下</button>
+                <button class="filter-btn">以物易物</button>
+                <button class="filter-btn">可捐贈</button>
+              </div>
+            </div> -->
+
+            <!-- 排序 -->
+            <!-- <div class="filter-section mt-3">
+              <h6><i class="bi bi-funnel"></i> 排序</h6>
+              <div class="sort-options">
+                <label class="sort-radio"
+                  ><input type="radio" name="sort" checked /> 最新上架</label
+                >
+                <label class="sort-radio"
+                  ><input type="radio" name="sort" /> 價格由低到高</label
+                >
+                <label class="sort-radio"
+                  ><input type="radio" name="sort" /> 價格由高到低</label
+                >
+              </div>
+            </div>
+
+            其他條件略 
+          </div>
+          <div class="offcanvas-footer d-flex justify-content-between p-3">
+            <button class="btn btn-outline-secondary reset-btn">
+              全部重設
+            </button>
+            <button class="btn btn-primary apply-btn">篩選</button>
+          </div>
+        </div> -->
+
+        <!-- 狀態 全新 九成新 七成新以下 以物易物 可捐贈 排序 最新上架 價格由低到高
+        價格由高到低 篩選條件 嬰兒服飾 男孩服飾 女孩服飾 玩具 育兒書籍 哺乳用品
+        推車 背巾 安全座椅 媽媽用品 地區（依位置） 台北 新北 桃園 台中 高雄
+        價格範圍 $ 最低價格 - $ 最高價格 -->
+      <!-- </aside> -->
+      <div>
+        <!-- btn 固定在面板下方-->
+        <!-- <button class="button btn-reset">全部重設</button>
+        <button class="button btn-start-search">篩選</button>
+      </div>
+    </section> -->
+
+    <main class="container pt-120 pb-160 py-md-48">
+      <div
+        class="mobile-filter-bar col-md-3 d-flex align-center justify-between py-md-48 d-md-none"
+      >
+        <div class="searching d-flex align-center justify-center">
+          <div class="search-bar col-md-3 position-relative">
+            <i data-lucide="search" class="search-icon me-md-12"></i>
+            <input type="text" class="search-input" placeholder="我要找寶物" />
+          </div>
+          <button id="openFilter" class="button filter-btn d-flex align-center">
+            <i data-lucide="settings-2" class="me-8"></i>
+            篩選
+          </button>
+        </div>
+      </div>
+<!-- 篩選面板（從右側滑出） -->
+      <aside id="filterPanel" class="filter-panel d-md-none">
+        <div class="filter-header d-flex align-center justify-between">
+          <button class="button closeFilter d-flex align-center">
+            <i class="lucide me-8" data-lucide="chevron-left"></i>
+          </button>
+          <h3 class="paragraph-body">篩選</h3>
+        </div>
+
+        <!-- 篩選內容 -->
+
+        <!-- ⚙️ 篩選面板 -->
+        <div class="offcanvas offcanvas-end" tabindex="-1" id="filterPanel">
+          <div class="offcanvas-header">
+            <h5 class="paragraph-body py-md-16">篩選</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="offcanvas"
+            ></button>
+          </div>
+          <div class="offcanvas-body">
+            <!-- 狀態 -->
+            <div class="filter-section">
+    <div class="d-flex align-center option-title mb-16">
+              <i class="lucide text-primary-300" data-lucide="bookmark"></i>
+              <h3 class="h5">狀態</h3>
+            </div>
+              <div class="filter-options">
+                <button class="filter-btn">全新</button>
+                <button class="filter-btn">九成新</button>
+                <button class="filter-btn">七成新以下</button>
+                <button class="filter-btn">以物易物</button>
+                <button class="filter-btn">可捐贈</button>
+              </div>
+            </div>
+
+            <!-- 排序 -->
+            <div class="filter-section mt-3">
+              <h6><i class="bi bi-funnel"></i> 排序</h6>
+              <div class="sort-options">
+                <label class="sort-radio"
+                  ><input type="radio" name="sort" checked /> 最新上架</label
+                >
+                <label class="sort-radio"
+                  ><input type="radio" name="sort" /> 價格由低到高</label
+                >
+                <label class="sort-radio"
+                  ><input type="radio" name="sort" /> 價格由高到低</label
+                >
+              </div>
+            </div>
+
+            <!-- 其他條件略 -->
+          </div>
+          <div class="offcanvas-footer d-flex justify-content-between p-3">
+            <button class="btn btn-outline-secondary reset-btn">
+              全部重設
+            </button>
+            <button class="btn btn-primary apply-btn">篩選</button>
+          </div>
+        </div>
+
+
+
+
+      
       <!-- 桌機版選項 -->
       <div class="row">
         <!-- options -->
@@ -427,15 +584,9 @@
                 <a href="product.html">
                   <div class="product-image mb-16">
                     <div class="badge paragraph-body-small d-flex">
-                      <span
-                        class="badge-pink paragraph-body-small paragraph-body-xs-md"
-                        >九成新</span
-                      >
-                      <!-- 桌機版：藍色標籤在圖片上 (只在 md+ 顯示) -->
-                      <span
-                        class="badge-blue paragraph-body-small d-none d-md-inline-block"
-                        >育兒省力神器</span
-                      >
+                      <span class="badge-pink paragraph-body-small paragraph-body-xs-md">九成新</span>
+                       <!-- 桌機版：藍色標籤在圖片上 (只在 md+ 顯示) -->
+                      <span class="badge-blue paragraph-body-small d-none d-md-inline-block">育兒省力神器</span>
                     </div>
                     <img
                       src="../assets/images/products-Images/product08.jpg"
@@ -464,20 +615,15 @@
                   <div class="product-info">
                     <h3 class="h5 item-name mb-8 mb-md-4">多功能寶寶背巾</h3>
                     <!-- 手機版：藍色標籤移到 product-info（只在 < md 顯示）並套用白底藍框樣式 -->
-                    <span
-                      class="badge-blue badge-blue--mobile paragraph-body-xs-md d-md-none mb-md-4"
-                      >育兒省力神器</span
-                    >
-                    <p
-                      class="shipper paragraph-body-small paragraph-body-xs-md mb-md-4"
-                    >
+        <span class="badge-blue badge-blue--mobile paragraph-body-xs-md d-md-none mb-md-4">育兒省力神器</span>
+                    <p class="shipper paragraph-body-small paragraph-body-xs-md mb-md-4">
                       宅配、超商店到店
                     </p>
                     <p class="h5 h6-md item-price">NT$ 1,280</p>
                   </div>
                   <button class="more-btn d-md-none" aria-label="更多">
-                    <i class="lucide" data-lucide="ellipsis"></i>
-                  </button>
+                      <i class="lucide" data-lucide="ellipsis"></i>
+                    </button>
                 </a>
               </div>
             </div>
@@ -490,14 +636,8 @@
                 <a href="product.html">
                   <div class="product-image mb-16">
                     <div class="badge paragraph-body-small d-flex">
-                      <span
-                        class="badge-pink paragraph-body-small paragraph-body-xs-md"
-                        >九成新</span
-                      >
-                      <span
-                        class="badge-blue paragraph-body-small d-none d-md-inline-block"
-                        >嬰兒泳衣</span
-                      >
+                      <span class="badge-pink paragraph-body-small paragraph-body-xs-md">九成新</span>
+                      <span class="badge-blue paragraph-body-small d-none d-md-inline-block">嬰兒泳衣</span>
                     </div>
                     <img
                       src="../assets/images/products-Images/product09.jpg"
@@ -526,20 +666,15 @@
 
                   <div class="product-info">
                     <h3 class="h5 item-name mb-8">嬰兒連身泳衣</h3>
-                    <span
-                      class="badge-blue badge-blue--mobile paragraph-body-xs-md d-md-none mb-md-4"
-                      >嬰兒泳衣</span
-                    >
-                    <p
-                      class="shipper paragraph-body-small paragraph-body-xs-md mb-8"
-                    >
+                     <span class="badge-blue badge-blue--mobile paragraph-body-xs-md d-md-none mb-md-4">嬰兒泳衣</span>
+                    <p class="shipper paragraph-body-small paragraph-body-xs-md mb-8">
                       宅配、超商取貨
                     </p>
                     <p class="h5 h6-md item-price">NT$ 100</p>
                   </div>
                   <button class="more-btn d-md-none" aria-label="更多">
-                    <i class="lucide" data-lucide="ellipsis"></i>
-                  </button>
+                      <i class="lucide" data-lucide="ellipsis"></i>
+                    </button>
                 </a>
               </div>
             </div>
@@ -552,14 +687,9 @@
                 <a href="product.html">
                   <div class="product-image mb-16">
                     <div class="badge paragraph-body-small d-flex">
-                      <span
-                        class="badge-pink paragraph-body-small paragraph-body-xs-md"
-                        >七成新</span
-                      >
-                      <span
-                        class="badge-blue paragraph-body-small d-none d-md-inline-block"
-                        >居家育兒好物</span
-                      >
+                     <span class="badge-pink paragraph-body-small paragraph-body-xs-md">七成新</span>
+                      <span class="badge-blue paragraph-body-small d-none d-md-inline-block">居家育兒好物</span>
+                     
                     </div>
                     <img
                       src="../assets/images/products-Images/product04.jpg"
@@ -588,20 +718,13 @@
 
                   <div class="product-info">
                     <h3 class="h5 item-name mb-8">嬰兒學步車</h3>
-                    <span
-                      class="badge-blue badge-blue--mobile paragraph-body-xs-md d-md-none mb-md-4"
-                      >居家育兒好物</span
-                    >
-                    <p
-                      class="shipper paragraph-body-small paragraph-body-xs-md mb-8"
-                    >
-                      面交
-                    </p>
+                    <span class="badge-blue badge-blue--mobile paragraph-body-xs-md d-md-none mb-md-4">居家育兒好物</span>
+                    <p class="shipper paragraph-body-small paragraph-body-xs-md mb-8">面交</p>
                     <p class="h5 h6-md item-price">NT$ 500</p>
                   </div>
                   <button class="more-btn d-md-none" aria-label="更多">
-                    <i class="lucide" data-lucide="ellipsis"></i>
-                  </button>
+                      <i class="lucide" data-lucide="ellipsis"></i>
+                    </button>
                 </a>
               </div>
             </div>
@@ -614,14 +737,9 @@
                 <a href="product.html">
                   <div class="product-image mb-16">
                     <div class="badge paragraph-body-small d-flex">
-                      <span
-                        class="badge-pink paragraph-body-small paragraph-body-xs-md"
-                        >七成新</span
-                      >
-                      <span
-                        class="badge-blue paragraph-body-small d-none d-md-inline-block"
-                        >寶寶必備</span
-                      >
+                      <span class="badge-pink paragraph-body-small paragraph-body-xs-md">七成新</span>
+                      <span class="badge-blue paragraph-body-small d-none d-md-inline-block">寶寶必備</span>
+                     
                     </div>
                     <img
                       src="../assets/images/products-Images/product02.jpg"
@@ -650,20 +768,13 @@
 
                   <div class="product-info">
                     <h3 class="h5 item-name mb-8">嬰兒床+蚊帳組</h3>
-                    <span
-                      class="badge-blue badge-blue--mobile paragraph-body-xs-md d-md-none mb-md-4"
-                      >寶寶必備</span
-                    >
-                    <p
-                      class="shipper paragraph-body-small paragraph-body-xs-md mb-8"
-                    >
-                      自取
-                    </p>
+                    <span class="badge-blue badge-blue--mobile paragraph-body-xs-md d-md-none mb-md-4">寶寶必備</span>
+                    <p class="shipper paragraph-body-small paragraph-body-xs-md mb-8">自取</p>
                     <p class="h5 h6-md item-price">NT$ 1,800</p>
                   </div>
                   <button class="more-btn d-md-none" aria-label="更多">
-                    <i class="lucide" data-lucide="ellipsis"></i>
-                  </button>
+                      <i class="lucide" data-lucide="ellipsis"></i>
+                    </button>
                 </a>
               </div>
             </div>
@@ -676,14 +787,9 @@
                 <a href="product.html">
                   <div class="product-image mb-16">
                     <div class="badge paragraph-body-small d-flex">
-                      <span
-                        class="badge-pink paragraph-body-small paragraph-body-xs-md"
-                        >可捐贈</span
-                      >
-                      <span
-                        class="badge-blue paragraph-body-small d-none d-md-inline-block"
-                        >嬰兒用品</span
-                      >
+                      <span class="badge-pink paragraph-body-small paragraph-body-xs-md">可捐贈</span>
+                      <span class="badge-blue paragraph-body-small d-none d-md-inline-block">嬰兒用品</span>
+                
                     </div>
                     <img
                       src="../assets/images/products-Images/product03.jpg"
@@ -711,21 +817,14 @@
                   </div>
 
                   <div class="product-info">
-                    <h3 class="h5 item-name mb-8">貝親奶瓶 160ml（2入）</h3>
-                    <span
-                      class="badge-blue badge-blue--mobile paragraph-body-xs-md d-md-none mb-md-4"
-                      >嬰兒用品</span
-                    >
-                    <p
-                      class="shipper paragraph-body-small paragraph-body-xs-md mb-8"
-                    >
-                      郵寄
-                    </p>
+                    <h3 class="h5 item-name mb-8">貝親奶瓶 160ml（2入）</h3>     
+                    <span class="badge-blue badge-blue--mobile paragraph-body-xs-md d-md-none mb-md-4">嬰兒用品</span>
+                    <p class="shipper paragraph-body-small paragraph-body-xs-md mb-8">郵寄</p>
                     <p class="h5 h6-md item-price">免費</p>
                   </div>
                   <button class="more-btn d-md-none" aria-label="更多">
-                    <i class="lucide" data-lucide="ellipsis"></i>
-                  </button>
+                      <i class="lucide" data-lucide="ellipsis"></i>
+                    </button>
                 </a>
               </div>
             </div>
@@ -738,14 +837,9 @@
                 <a href="product.html">
                   <div class="product-image mb-16">
                     <div class="badge paragraph-body-small d-flex">
-                      <span
-                        class="badge-pink paragraph-body-small paragraph-body-xs-md"
-                        >八成新</span
-                      >
-                      <span
-                        class="badge-blue paragraph-body-small d-none d-md-inline-block"
-                        >育兒好物</span
-                      >
+                      <span class="badge-pink paragraph-body-small paragraph-body-xs-md">八成新</span>
+                      <span class="badge-blue paragraph-body-small d-none d-md-inline-block">育兒好物</span>
+                    
                     </div>
                     <img
                       src="../assets/images/products-Images/product05.jpg"
@@ -774,20 +868,13 @@
 
                   <div class="product-info">
                     <h3 class="h5 item-name mb-8">嬰兒床圍（4片組）</h3>
-                    <span
-                      class="badge-blue badge-blue--mobile paragraph-body-xs-md d-md-none mb-md-4"
-                      >育兒好物</span
-                    >
-                    <p
-                      class="shipper paragraph-body-small paragraph-body-xs-md mb-8"
-                    >
-                      超商店到店
-                    </p>
+                     <span class="badge-blue badge-blue--mobile paragraph-body-xs-md d-md-none mb-md-4">育兒好物</span>
+                    <p class="shipper paragraph-body-small paragraph-body-xs-md mb-8">超商店到店</p>
                     <p class="h5 h6-md item-price">NT$ 200</p>
                   </div>
                   <button class="more-btn d-md-none" aria-label="更多">
-                    <i class="lucide" data-lucide="ellipsis"></i>
-                  </button>
+                      <i class="lucide" data-lucide="ellipsis"></i>
+                    </button>
                 </a>
               </div>
             </div>
@@ -800,14 +887,9 @@
                 <a href="product.html">
                   <div class="product-image mb-16">
                     <div class="badge paragraph-body-small d-flex">
-                      <span
-                        class="badge-pink paragraph-body-small paragraph-body-xs-md"
-                        >可捐贈</span
-                      >
-                      <span
-                        class="badge-blue paragraph-body-small d-none d-md-inline-block"
-                        >育兒好物</span
-                      >
+                      <span class="badge-pink paragraph-body-small paragraph-body-xs-md">可捐贈</span>
+                      <span class="badge-blue paragraph-body-small d-none d-md-inline-block">育兒好物</span>
+                     
                     </div>
                     <img
                       src="../assets/images/products-Images/product06.jpg"
@@ -836,20 +918,13 @@
 
                   <div class="product-info">
                     <h3 class="h5 item-name mb-8">新生兒帽子手套組</h3>
-                    <span
-                      class="badge-blue badge-blue--mobile paragraph-body-xs-md d-md-none mb-md-4"
-                      >育兒好物</span
-                    >
-                    <p
-                      class="shipper paragraph-body-small paragraph-body-xs-md mb-8"
-                    >
-                      郵寄
-                    </p>
+                    <span class="badge-blue badge-blue--mobile paragraph-body-xs-md d-md-none mb-md-4">育兒好物</span>
+                    <p class="shipper paragraph-body-small paragraph-body-xs-md mb-8">郵寄</p>
                     <p class="h5 h6-md item-price">NT$ 1,280</p>
                   </div>
                   <button class="more-btn d-md-none" aria-label="更多">
-                    <i class="lucide" data-lucide="ellipsis"></i>
-                  </button>
+                      <i class="lucide" data-lucide="ellipsis"></i>
+                    </button>
                 </a>
               </div>
             </div>
@@ -862,14 +937,9 @@
                 <a href="product.html">
                   <div class="product-image mb-16">
                     <div class="badge paragraph-body-small d-flex">
-                      <span
-                        class="badge-pink paragraph-body-small paragraph-body-xs-md"
-                        >全新</span
-                      >
-                      <span
-                        class="badge-blue paragraph-body-small d-none d-md-inline-block"
-                        >寶寶入門款</span
-                      >
+                      <span class="badge-pink paragraph-body-small paragraph-body-xs-md">全新</span>
+                      <span class="badge-blue paragraph-body-small d-none d-md-inline-block">寶寶入門款</span>
+                    
                     </div>
                     <img
                       src="../assets/images/products-Images/product07.jpg"
@@ -898,20 +968,13 @@
 
                   <div class="product-info">
                     <h3 class="h5 item-name mb-8">寶寶入門款</h3>
-                    <span
-                      class="badge-blue badge-blue--mobile paragraph-body-xs-md d-md-none mb-md-4"
-                      >寶寶入門款</span
-                    >
-                    <p
-                      class="shipper paragraph-body-small paragraph-body-xs-md mb-8"
-                    >
-                      自取
-                    </p>
+                     <span class="badge-blue badge-blue--mobile paragraph-body-xs-md d-md-none mb-md-4">寶寶入門款</span>
+                    <p class="shipper paragraph-body-small paragraph-body-xs-md mb-8">自取</p>
                     <p class="h5 h6-md item-price">NT$300</p>
                   </div>
                   <button class="more-btn d-md-none" aria-label="更多">
-                    <i class="lucide" data-lucide="ellipsis"></i>
-                  </button>
+                      <i class="lucide" data-lucide="ellipsis"></i>
+                    </button>
                 </a>
               </div>
             </div>
@@ -924,14 +987,9 @@
                 <a href="product.html">
                   <div class="product-image mb-16">
                     <div class="badge paragraph-body-small d-flex">
-                      <span
-                        class="badge-pink paragraph-body-small paragraph-body-xs-md"
-                        >可捐贈</span
-                      >
-                      <span
-                        class="badge-blue paragraph-body-small d-none d-md-inline-block"
-                        >親子戲水推薦</span
-                      >
+                      <span class="badge-pink paragraph-body-small paragraph-body-xs-md">可捐贈</span>
+                      <span class="badge-blue paragraph-body-small d-none d-md-inline-block">親子戲水推薦</span>
+                     
                     </div>
                     <img
                       src="../assets/images/products-Images/product10.jpg"
@@ -960,20 +1018,13 @@
 
                   <div class="product-info">
                     <h3 class="h5 item-name mb-8">兒童造型泳圈</h3>
-                    <span
-                      class="badge-blue badge-blue--mobile paragraph-body-xs-md d-md-none mb-md-4"
-                      >親子戲水推薦</span
-                    >
-                    <p
-                      class="shipper paragraph-body-small paragraph-body-xs-md mb-8"
-                    >
-                      郵寄
-                    </p>
+                    <span class="badge-blue badge-blue--mobile paragraph-body-xs-md d-md-none mb-md-4">親子戲水推薦</span>
+                    <p class="shipper paragraph-body-small paragraph-body-xs-md mb-8">郵寄</p>
                     <p class="h5 h6-md item-price">免費</p>
                   </div>
                   <button class="more-btn d-md-none" aria-label="更多">
-                    <i class="lucide" data-lucide="ellipsis"></i>
-                  </button>
+                      <i class="lucide" data-lucide="ellipsis"></i>
+                    </button>
                 </a>
               </div>
             </div>
@@ -986,14 +1037,9 @@
                 <a href="product.html">
                   <div class="product-image mb-16">
                     <div class="badge paragraph-body-small d-flex">
-                      <span
-                        class="badge-pink paragraph-body-small paragraph-body-xs-md"
-                        >七成新</span
-                      >
-                      <span
-                        class="badge-blue paragraph-body-small d-none d-md-inline-block"
-                        >居家育兒好物</span
-                      >
+                     <span class="badge-pink paragraph-body-small paragraph-body-xs-md">七成新</span>
+                      <span class="badge-blue paragraph-body-small d-none d-md-inline-block">居家育兒好物</span>
+                     
                     </div>
                     <img
                       src="../assets/images/products-Images/feedback05.jpg"
@@ -1022,20 +1068,13 @@
 
                   <div class="product-info">
                     <h3 class="h5 item-name mb-8">高腳餐椅</h3>
-                    <span
-                      class="badge-blue badge-blue--mobile paragraph-body-xs-md d-md-none mb-md-4"
-                      >居家育兒好物</span
-                    >
-                    <p
-                      class="shipper paragraph-body-small paragraph-body-xs-md mb-8"
-                    >
-                      面交
-                    </p>
+                    <span class="badge-blue badge-blue--mobile paragraph-body-xs-md d-md-none mb-md-4">居家育兒好物</span>
+                    <p class="shipper paragraph-body-small paragraph-body-xs-md mb-8">面交</p>
                     <p class="h5 h6-md item-price">NT$ 500</p>
                   </div>
                   <button class="more-btn d-md-none" aria-label="更多">
-                    <i class="lucide" data-lucide="ellipsis"></i>
-                  </button>
+                      <i class="lucide" data-lucide="ellipsis"></i>
+                    </button>
                 </a>
               </div>
             </div>
@@ -1048,14 +1087,9 @@
                 <a href="product.html">
                   <div class="product-image mb-16">
                     <div class="badge paragraph-body-small d-flex">
-                      <span
-                        class="badge-pink paragraph-body-small paragraph-body-xs-md"
-                        >九成新</span
-                      >
-                      <span
-                        class="badge-blue paragraph-body-small d-none d-md-inline-block"
-                        >養寶寶必備</span
-                      >
+                      <span class="badge-pink paragraph-body-small paragraph-body-xs-md">九成新</span>
+                      <span class="badge-blue paragraph-body-small d-none d-md-inline-block">養寶寶必備</span>
+                     
                     </div>
                     <img
                       src="../assets/images/products-Images/feedback01.jpg"
@@ -1084,20 +1118,15 @@
 
                   <div class="product-info">
                     <h3 class="h5 item-name mb-8">嬰兒推車Combi</h3>
-                    <span
-                      class="badge-blue badge-blue--mobile paragraph-body-xs-md d-md-none mb-md-4"
-                      >養寶寶必備</span
-                    >
-                    <p
-                      class="shipper paragraph-body-small paragraph-body-xs-md mb-8"
-                    >
+                    <span class="badge-blue badge-blue--mobile paragraph-body-xs-md d-md-none mb-md-4">養寶寶必備</span>
+                    <p class="shipper paragraph-body-small paragraph-body-xs-md mb-8">
                       面交、自付運費
                     </p>
                     <p class="h5 h6-md item-price">NT$ 2,500</p>
                   </div>
                   <button class="more-btn d-md-none" aria-label="更多">
-                    <i class="lucide" data-lucide="ellipsis"></i>
-                  </button>
+                      <i class="lucide" data-lucide="ellipsis"></i>
+                    </button>
                 </a>
               </div>
             </div>
@@ -1110,14 +1139,9 @@
                 <a href="product.html">
                   <div class="product-image mb-16">
                     <div class="badge paragraph-body-small d-flex">
-                      <span
-                        class="badge-pink paragraph-body-small paragraph-body-xs-md"
-                        >七成新</span
-                      >
-                      <span
-                        class="badge-blue paragraph-body-small d-none d-md-inline-block"
-                        >寶寶必備</span
-                      >
+                      <span class="badge-pink paragraph-body-small paragraph-body-xs-md">七成新</span>
+                      <span class="badge-blue paragraph-body-small d-none d-md-inline-block">寶寶必備</span>
+                     
                     </div>
                     <img
                       src="../assets/images/products-Images/product揹巾.png"
@@ -1146,20 +1170,13 @@
 
                   <div class="product-info">
                     <h3 class="h5 item-name mb-8">BaoBao透氣背巾</h3>
-                    <span
-                      class="badge-blue badge-blue--mobile paragraph-body-xs-md d-md-none mb-md-4"
-                      >寶寶必備</span
-                    >
-                    <p
-                      class="shipper paragraph-body-small paragraph-body-xs-md mb-8"
-                    >
-                      郵寄
-                    </p>
+                    <span class="badge-blue badge-blue--mobile paragraph-body-xs-md d-md-none mb-md-4">寶寶必備</span>
+                    <p class="shipper paragraph-body-small paragraph-body-xs-md mb-8">郵寄</p>
                     <p class="h5 h6-md item-price">NT$ 500</p>
                   </div>
                   <button class="more-btn d-md-none" aria-label="更多">
-                    <i class="lucide" data-lucide="ellipsis"></i>
-                  </button>
+                      <i class="lucide" data-lucide="ellipsis"></i>
+                    </button>
                 </a>
               </div>
             </div>
@@ -1221,123 +1238,6 @@
       </div>
     </main>
 
-    <!-- 手機版篩選列 -->
-    <div
-      class="mobile-filter-bar d-flex align-items-center justify-content-between d-md-none"
-    >
-      <!-- 觸發 Offcanvas 的按鈕 -->
-      <button
-        class="btn filter-btn d-flex align-items-center"
-        type="button"
-        data-bs-toggle="offcanvas"
-        data-bs-target="#filterOffcanvas"
-        aria-controls="filterOffcanvas"
-      >
-        <i data-lucide="chevron-left" class="me-1"></i>
-        篩選
-      </button>
-    </div>
-
-    <!-- Offcanvas 篩選面板 -->
-    <div
-      class="offcanvas offcanvas-end"
-      tabindex="-1"
-      id="filterOffcanvas"
-      aria-labelledby="offcanvasFilterLabel"
-    >
-      <div class="offcanvas-header">
-        <h5 class="offcanvas-title" id="offcanvasFilterLabel">篩選條件</h5>
-        <button
-          type="button"
-          class="btn-close"
-          data-bs-dismiss="offcanvas"
-          aria-label="Close"
-        ></button>
-      </div>
-
-      <div class="offcanvas-body">
-        <!-- 狀態 -->
-        <section class="mb-3">
-          <i data-lucide="bookmark" class="me-2"></i>
-          <h6 class="fw-bold">狀態</h6>
-          <div class="d-flex flex-wrap gap-2">
-            <label><input type="checkbox" class="me-1" /> 全新</label>
-            <label><input type="checkbox" class="me-1" /> 九成新</label>
-            <label><input type="checkbox" class="me-1" /> 七成新以下</label>
-            <label><input type="checkbox" class="me-1" /> 以物易物</label>
-            <label><input type="checkbox" class="me-1" /> 可捐贈</label>
-          </div>
-        </section>
-
-        <!-- 篩選條件 -->
-        <section class="mb-3">
-          <i data-lucide="funnel" class="me-2"></i>
-          <h6 class="fw-bold">篩選條件</h6>
-          <div class="d-flex flex-wrap gap-2">
-            <label><input type="checkbox" class="me-1" /> 嬰兒服飾</label>
-            <label><input type="checkbox" class="me-1" /> 男孩服飾</label>
-            <label><input type="checkbox" class="me-1" /> 女孩服飾</label>
-            <label><input type="checkbox" class="me-1" /> 玩具</label>
-            <label><input type="checkbox" class="me-1" /> 育兒書籍</label>
-            <label><input type="checkbox" class="me-1" /> 哺乳用品</label>
-            <label><input type="checkbox" class="me-1" /> 推車</label>
-            <label><input type="checkbox" class="me-1" /> 揹巾</label>
-            <label><input type="checkbox" class="me-1" /> 安全座椅</label>
-            <label><input type="checkbox" class="me-1" /> 媽媽用品</label>
-          </div>
-        </section>
-
-        <!-- 位置 -->
-        <section class="mb-3">
-          <i data-lucide="map-pin" class="me-2"></i>
-          <h6 class="fw-bold">位置（依地區）</h6>
-          <div class="d-flex flex-wrap gap-2">
-            <label><input type="checkbox" class="me-1" /> 台北</label>
-            <label><input type="checkbox" class="me-1" /> 新北</label>
-            <label><input type="checkbox" class="me-1" /> 桃園</label>
-            <label><input type="checkbox" class="me-1" /> 台中</label>
-            <label><input type="checkbox" class="me-1" /> 高雄</label>
-          </div>
-        </section>
-
-        <!-- 排序 -->
-        <section class="mb-3">
-          <i data-lucide="list-filter" class="me-2"></i>
-          <h6 class="fw-bold">排序</h6>
-          <label
-            ><input type="radio" name="sort" checked class="me-1" />
-            最新上架</label
-          >
-          <label
-            ><input type="radio" name="sort" class="me-1" /> 價格由低到高</label
-          >
-          <label
-            ><input type="radio" name="sort" class="me-1" /> 價格由高到低</label
-          >
-        </section>
-
-        <!-- 價格範圍 -->
-        <section>
-          <i data-lucide="circle-dollar-sign" class="me-2 text-primary"></i>
-          <h6 class="fw-bold">價格範圍</h6>
-          <div class="d-flex align-items-center">
-            <input
-              type="number"
-              class="form-control me-2"
-              placeholder="$最低價格"
-            />
-            <span class="me-2">-</span>
-            <input type="number" class="form-control" placeholder="$最高價格" />
-          </div>
-        </section>
-      </div>
-
-      <div class="offcanvas-footer d-flex justify-content-between p-3">
-        <button class="btn btn-outline-secondary">全部重設</button>
-        <button class="btn btn-primary">套用篩選</button>
-      </div>
-    </div>
-
     <section class="recent-viewed">
       <div class="container pt-120 pb-160">
         <h2 class="h3 mb-32">您最近看過的商品</h2>
@@ -1357,14 +1257,9 @@
                   <a href="product.html">
                     <div class="product-image mb-16">
                       <div class="badge paragraph-body-small d-flex">
-                        <span
-                          class="badge-pink paragraph-body-small paragraph-body-xs-md"
-                          >七成新</span
-                        >
-                        <span
-                          class="badge-blue paragraph-body-small d-none d-md-inline-block"
-                          >居家育兒好物</span
-                        >
+                       <span class="badge-pink paragraph-body-small paragraph-body-xs-md">七成新</span>
+                      <span class="badge-blue paragraph-body-small d-none d-md-inline-block">居家育兒好物</span>
+             
                       </div>
                       <img
                         src="../assets/images/products-Images/product04.jpg"
@@ -1392,18 +1287,9 @@
                     </div>
 
                     <div class="product-info">
-                      <h3 class="h5 item-name mb-8 h6-md mb-md-4">
-                        嬰兒學步車
-                      </h3>
-                      <span
-                        class="badge-blue badge-blue--mobile paragraph-body-xs-md d-md-none mb-md-4"
-                        >居家育兒好物</span
-                      >
-                      <p
-                        class="shipper paragraph-body-small paragraph-body-xs-md mb-8 mb-md-4"
-                      >
-                        面交
-                      </p>
+                      <h3 class="h5 item-name mb-8 h6-md mb-md-4">嬰兒學步車</h3>        
+                      <span class="badge-blue badge-blue--mobile paragraph-body-xs-md d-md-none mb-md-4">居家育兒好物</span>
+                      <p class="shipper paragraph-body-small paragraph-body-xs-md mb-8 mb-md-4">面交</p>
                       <p class="h5 h6-md item-price">NT$ 500</p>
                     </div>
                     <button class="more-btn d-md-none" aria-label="更多">
@@ -1421,14 +1307,9 @@
                   <a href="product.html">
                     <div class="product-image mb-16">
                       <div class="badge paragraph-body-small d-flex">
-                        <span
-                          class="badge-pink paragraph-body-small paragraph-body-xs-md"
-                          >七成新</span
-                        >
-                        <span
-                          class="badge-blue paragraph-body-small d-none d-md-inline-block"
-                          >寶寶必備</span
-                        >
+                        <span class="badge-pink paragraph-body-small paragraph-body-xs-md">七成新</span>
+                      <span class="badge-blue paragraph-body-small d-none d-md-inline-block">寶寶必備</span>
+                    
                       </div>
                       <img
                         src="../assets/images/products-Images/product02.jpg"
@@ -1456,24 +1337,15 @@
                     </div>
 
                     <div class="product-info">
-                      <h3 class="h5 item-name mb-8 h6-md mb-md-4">
-                        嬰兒床+蚊帳組
-                      </h3>
-                      <span
-                        class="badge-blue badge-blue--mobile paragraph-body-xs-md d-md-none mb-md-4"
-                        >寶寶必備</span
-                      >
-                      <p
-                        class="shipper paragraph-body-small paragraph-body-xs-md mb-8"
-                      >
-                        自取
-                      </p>
+                      <h3 class="h5 item-name mb-8 h6-md mb-md-4">嬰兒床+蚊帳組</h3> 
+                      <span class="badge-blue badge-blue--mobile paragraph-body-xs-md d-md-none mb-md-4">寶寶必備</span>
+                      <p class="shipper paragraph-body-small paragraph-body-xs-md mb-8">自取</p>
                       <p class="h5 h6-md item-price">NT$ 1,800</p>
                     </div>
                     <button class="more-btn d-md-none" aria-label="更多">
                       <i class="lucide" data-lucide="ellipsis"></i>
                     </button>
-                  </a>
+                    </a>
                 </div>
               </div>
 
@@ -1485,14 +1357,9 @@
                   <a href="product.html">
                     <div class="product-image mb-16">
                       <div class="badge paragraph-body-small d-flex">
-                        <span
-                          class="badge-pink paragraph-body-small paragraph-body-xs-md"
-                          >可捐贈</span
-                        >
-                        <span
-                          class="badge-blue paragraph-body-small d-none d-md-inline-block"
-                          >嬰兒用品</span
-                        >
+                     <span class="badge-pink paragraph-body-small paragraph-body-xs-md">可捐贈</span>
+                      <span class="badge-blue paragraph-body-small d-none d-md-inline-block">嬰兒用品</span>
+                     
                       </div>
                       <img
                         src="../assets/images/products-Images/product03.jpg"
@@ -1520,18 +1387,9 @@
                     </div>
 
                     <div class="product-info">
-                      <h3 class="h5 item-name mb-8 h6-md mb-md-4">
-                        貝親奶瓶 160ml（2入）
-                      </h3>
-                      <span
-                        class="badge-blue badge-blue--mobile paragraph-body-xs-md d-md-none mb-md-4"
-                        >嬰兒用品</span
-                      >
-                      <p
-                        class="shipper paragraph-body-small paragraph-body-xs-md mb-8"
-                      >
-                        郵寄
-                      </p>
+                      <h3 class="h5 item-name mb-8 h6-md mb-md-4">貝親奶瓶 160ml（2入）</h3>
+                      <span class="badge-blue badge-blue--mobile paragraph-body-xs-md d-md-none mb-md-4">嬰兒用品</span>
+                      <p class="shipper paragraph-body-small paragraph-body-xs-md mb-8">郵寄</p>
                       <p class="h5 h6-md item-price">免費</p>
                     </div>
                     <button class="more-btn d-md-none" aria-label="更多">
@@ -1549,14 +1407,9 @@
                   <a href="product.html">
                     <div class="product-image mb-16">
                       <div class="badge paragraph-body-small d-flex">
-                        <span
-                          class="badge-pink paragraph-body-small paragraph-body-xs-md"
-                          >八成新</span
-                        >
-                        <span
-                          class="badge-blue paragraph-body-small d-none d-md-inline-block"
-                          >育兒好物</span
-                        >
+                        <span class="badge-pink paragraph-body-small paragraph-body-xs-md">八成新</span>
+                      <span class="badge-blue paragraph-body-small d-none d-md-inline-block">育兒好物</span>
+                   
                       </div>
                       <img
                         src="../assets/images/products-Images/product05.jpg"
@@ -1584,17 +1437,10 @@
                     </div>
 
                     <div class="product-info">
-                      <h3 class="h5 item-name mb-8 h6-md mb-md-4">
-                        嬰兒床圍（4片組）
-                      </h3>
-                      <span
-                        class="badge-blue badge-blue--mobile paragraph-body-xs-md d-md-none mb-md-4"
-                        >育兒好物</span
-                      >
-
-                      <p
-                        class="shipper paragraph-body-small paragraph-body-xs-md mb-8 mb-md-4"
-                      >
+                      <h3 class="h5 item-name mb-8 h6-md mb-md-4">嬰兒床圍（4片組）</h3>
+                        <span class="badge-blue badge-blue--mobile paragraph-body-xs-md d-md-none mb-md-4">育兒好物</span>
+         
+                      <p class="shipper paragraph-body-small paragraph-body-xs-md mb-8 mb-md-4">
                         超商店到店
                       </p>
                       <p class="h5 h6-md item-price">NT$ 200</p>
@@ -1614,14 +1460,9 @@
                   <a href="product.html">
                     <div class="product-image mb-16">
                       <div class="badge paragraph-body-small d-flex">
-                        <span
-                          class="badge-pink paragraph-body-small paragraph-body-xs-md"
-                          >七成新</span
-                        >
-                        <span
-                          class="badge-blue paragraph-body-small d-none d-md-inline-block"
-                          >寶寶必備</span
-                        >
+                        <span class="badge-pink paragraph-body-small paragraph-body-xs-md">七成新</span>
+                    <span class="badge-blue paragraph-body-small d-none d-md-inline-block">寶寶必備</span>
+                     
                       </div>
                       <img
                         src="../assets/images/products-Images/product揹巾.png"
@@ -1649,19 +1490,10 @@
                     </div>
 
                     <div class="product-info">
-                      <h3 class="h5 item-name mb-8 h6-md mb-md-4">
-                        BaoBao透氣背巾
-                      </h3>
-                      <span
-                        class="badge-blue badge-blue--mobile paragraph-body-xs-md d-md-none mb-md-4"
-                        >寶寶必備</span
-                      >
-
-                      <p
-                        class="shipper paragraph-body-small paragraph-body-xs-md mb-8 mb-md-4"
-                      >
-                        郵寄
-                      </p>
+                      <h3 class="h5 item-name mb-8 h6-md mb-md-4">BaoBao透氣背巾</h3>
+                      <span class="badge-blue badge-blue--mobile paragraph-body-xs-md d-md-none mb-md-4">寶寶必備</span>
+                 
+        <p class="shipper paragraph-body-small paragraph-body-xs-md mb-8 mb-md-4">郵寄</p>
                       <p class="h5 h6-md item-price">NT$ 500</p>
                     </div>
                     <button class="more-btn d-md-none" aria-label="更多">
@@ -1684,17 +1516,11 @@
     <a href="video.html" class="video-float">
       <img
         src="/assets/images/products-Images/video-desktop.png"
-        alt="video-name"
-        class="d-none d-md-block"
+        alt="video-name" class="d-none d-md-block"
       />
-      <!-- <img
-        src="/assets/images/products-Images/video-mobile.png"
-        alt="video-name" class="d-md-block"
-      />
-       -->
 
       <button
-        class="video-play-btn button d-flex align-center justify-center"
+        class="video-play-btn button d-flex align-center justify-center "
         aria-label="播放"
       >
         <i data-lucide="circle-play pt-83"></i>
@@ -1704,144 +1530,7 @@
       </div>
     </a>
 
-    <!-- 手機版：⋯ 展開選單 -->
-    <div id="actionMenu" class="mobile-action-menu d-md-none">
-      <div class="menu-overlay"></div>
-      <div class="menu-panel">
-        <button class="menu-close"><i data-lucide="x"></i></button>
-        <button class="menu-btn d-flex align-center justify-start">
-          <i data-lucide="send"></i><span>分享</span>
-        </button>
-        <button class="menu-btn d-flex align-center justify-start">
-          <i data-lucide="message-circle-more"></i><span>聊聊</span>
-        </button>
-      </div>
-    </div>
-
-    <!-- 手機版篩選列 -->
-    <div
-      class="mobile-filter-bar d-flex align-items-center justify-content-between d-md-none"
-    >
-      <div class="searching d-flex align-items-center">
-        <div class="search-bar position-relative me-2">
-          <i data-lucide="search" class="search-icon me-2"></i>
-          <input type="text" class="search-input" placeholder="我要找寶物" />
-        </div>
-      </div>
-
-      <!-- 觸發 Offcanvas 的按鈕 -->
-      <button
-        class="btn filter-btn d-flex align-items-center"
-        type="button"
-        data-bs-toggle="offcanvas"
-        data-bs-target="#filterOffcanvas"
-        aria-controls="filterOffcanvas"
-      >
-        <i data-lucide="chevron-left" class="me-1"></i>
-        篩選
-      </button>
-    </div>
-
-    <!-- Offcanvas 篩選面板 -->
-    <div
-      class="offcanvas offcanvas-end"
-      tabindex="-1"
-      id="filterOffcanvas"
-      aria-labelledby="offcanvasFilterLabel"
-    >
-      <div class="offcanvas-header">
-        <h5 class="offcanvas-title" id="offcanvasFilterLabel">篩選條件</h5>
-        <button
-          type="button"
-          class="btn-close"
-          data-bs-dismiss="offcanvas"
-          aria-label="Close"
-        ></button>
-      </div>
-
-      <div class="offcanvas-body">
-        <!-- 狀態 -->
-        <section class="mb-3">
-          <i data-lucide="bookmark" class="me-2"></i>
-          <h6 class="fw-bold">狀態</h6>
-          <div class="d-flex flex-wrap gap-2">
-            <label><input type="checkbox" class="me-1" /> 全新</label>
-            <label><input type="checkbox" class="me-1" /> 九成新</label>
-            <label><input type="checkbox" class="me-1" /> 七成新以下</label>
-            <label><input type="checkbox" class="me-1" /> 以物易物</label>
-            <label><input type="checkbox" class="me-1" /> 可捐贈</label>
-          </div>
-        </section>
-
-        <!-- 篩選條件 -->
-        <section class="mb-3">
-          <i data-lucide="funnel" class="me-2"></i>
-          <h6 class="fw-bold">篩選條件</h6>
-          <div class="d-flex flex-wrap gap-2">
-            <label><input type="checkbox" class="me-1" /> 嬰兒服飾</label>
-            <label><input type="checkbox" class="me-1" /> 男孩服飾</label>
-            <label><input type="checkbox" class="me-1" /> 女孩服飾</label>
-            <label><input type="checkbox" class="me-1" /> 玩具</label>
-            <label><input type="checkbox" class="me-1" /> 育兒書籍</label>
-            <label><input type="checkbox" class="me-1" /> 哺乳用品</label>
-            <label><input type="checkbox" class="me-1" /> 推車</label>
-            <label><input type="checkbox" class="me-1" /> 揹巾</label>
-            <label><input type="checkbox" class="me-1" /> 安全座椅</label>
-            <label><input type="checkbox" class="me-1" /> 媽媽用品</label>
-          </div>
-        </section>
-
-        <!-- 位置 -->
-        <section class="mb-3">
-          <i data-lucide="map-pin" class="me-2"></i>
-          <h6 class="fw-bold">位置（依地區）</h6>
-          <div class="d-flex flex-wrap gap-2">
-            <label><input type="checkbox" class="me-1" /> 台北</label>
-            <label><input type="checkbox" class="me-1" /> 新北</label>
-            <label><input type="checkbox" class="me-1" /> 桃園</label>
-            <label><input type="checkbox" class="me-1" /> 台中</label>
-            <label><input type="checkbox" class="me-1" /> 高雄</label>
-          </div>
-        </section>
-
-        <!-- 排序 -->
-        <section class="mb-3">
-          <i data-lucide="list-filter" class="me-2"></i>
-          <h6 class="fw-bold">排序</h6>
-          <label
-            ><input type="radio" name="sort" checked class="me-1" />
-            最新上架</label
-          >
-          <label
-            ><input type="radio" name="sort" class="me-1" /> 價格由低到高</label
-          >
-          <label
-            ><input type="radio" name="sort" class="me-1" /> 價格由高到低</label
-          >
-        </section>
-
-        <!-- 價格範圍 -->
-        <section>
-          <i data-lucide="circle-dollar-sign" class="me-2 text-primary"></i>
-          <h6 class="fw-bold">價格範圍</h6>
-          <div class="d-flex align-items-center">
-            <input
-              type="number"
-              class="form-control me-2"
-              placeholder="$最低價格"
-            />
-            <span class="me-2">-</span>
-            <input type="number" class="form-control" placeholder="$最高價格" />
-          </div>
-        </section>
-      </div>
-
-      <div class="offcanvas-footer d-flex justify-content-between p-3">
-        <button class="btn btn-outline-secondary">全部重設</button>
-        <button class="btn btn-primary">套用篩選</button>
-      </div>
-    </div>
-
+  
     <script type="module" src="../main.js"></script>
 
     <%- include('./layout/footer'); -%>
@@ -1851,289 +1540,7 @@
         // 初始化 Lucide Icons
         lucide.createIcons();
 
-        // ========== Banner Carousel ==========
-        const carousel = document.getElementById("bannerCarousel");
-        const indicators = document.querySelectorAll(
-          ".custom-indicators button"
-        );
-
-        if (carousel && indicators.length > 0) {
-          carousel.addEventListener("slide.bs.carousel", (event) => {
-            indicators.forEach((el) => el.classList.remove("active"));
-            if (indicators[event.to]) {
-              indicators[event.to].classList.add("active");
-            }
-          });
-
-          indicators.forEach((el, index) => {
-            el.addEventListener("click", () => {
-              const bsCarousel =
-                bootstrap.Carousel.getInstance(carousel) ||
-                new bootstrap.Carousel(carousel);
-              bsCarousel.to(index);
-            });
-          });
-        }
-        // 手機版 ⋯ 展開控制
-        document.querySelectorAll(".action-btn.more-btn").forEach((btn) => {
-          btn.addEventListener("click", () => {
-            document.getElementById("actionMenu").classList.add("active");
-          });
-        });
-        document
-          .querySelector(".menu-overlay")
-          .addEventListener("click", () => {
-            document.getElementById("actionMenu").classList.remove("active");
-          });
-        document.querySelector(".menu-close").addEventListener("click", () => {
-          document.getElementById("actionMenu").classList.remove("active");
-        });
-        // ========== Dropdown 選項切換 ==========
-        document.querySelectorAll(".dropdown").forEach((dropdown) => {
-          const items = dropdown.querySelectorAll(".dropdown-item");
-          const toggleText = dropdown.querySelector(".sort-text");
-
-          items.forEach((item) => {
-            item.addEventListener("click", (e) => {
-              e.preventDefault();
-
-              // 移除所有 active
-              items.forEach((i) => i.classList.remove("active"));
-
-              // 加上當前的 active
-              item.classList.add("active");
-
-              // 更新顯示文字
-              toggleText.textContent = item.textContent.trim();
-
-              // 重新渲染 icons
-              lucide.createIcons();
-            });
-          });
-        });
-
-        // ========== 外出用品 Checkbox ==========
-        const parentCheckbox = document.getElementById("outdoor-parent");
-        const childCheckboxes = document.querySelectorAll(".outdoor-child");
-
-        if (parentCheckbox && childCheckboxes.length > 0) {
-          childCheckboxes.forEach((child) => {
-            child.addEventListener("change", () => {
-              const checkedCount = Array.from(childCheckboxes).filter(
-                (cb) => cb.checked
-              ).length;
-
-              if (checkedCount === 0) {
-                parentCheckbox.checked = false;
-                parentCheckbox.indeterminate = false;
-              } else if (checkedCount === childCheckboxes.length) {
-                parentCheckbox.checked = true;
-                parentCheckbox.indeterminate = false;
-              } else {
-                parentCheckbox.checked = false;
-                parentCheckbox.indeterminate = true;
-              }
-            });
-          });
-
-          parentCheckbox.addEventListener("change", () => {
-            const isChecked = parentCheckbox.checked;
-            childCheckboxes.forEach((cb) => (cb.checked = isChecked));
-            parentCheckbox.indeterminate = false;
-          });
-        }
-
-        // ========== 收藏按鈕 ==========
-        document.querySelectorAll(".favorite-btn").forEach((btn) => {
-          btn.addEventListener("click", function (e) {
-            e.preventDefault();
-            e.stopPropagation();
-            this.classList.toggle("active");
-          });
-        });
-
-        // ========== 清除全部按鈕 ==========
-        const clearBtn = document.querySelector(".btn-clear");
-        if (clearBtn) {
-          clearBtn.addEventListener("click", () => {
-            // 清除 checkbox
-            document
-              .querySelectorAll('input[type="checkbox"]')
-              .forEach((cb) => {
-                cb.checked = false;
-                cb.indeterminate = false;
-              });
-
-            // 清除價格
-            const minPrice = document.querySelector(".min-price");
-            const maxPrice = document.querySelector(".max-price");
-            if (minPrice) minPrice.value = "";
-            if (maxPrice) maxPrice.value = "";
-
-            // 重置 dropdown
-            document.querySelectorAll(".dropdown").forEach((dropdown) => {
-              const items = dropdown.querySelectorAll(".dropdown-item");
-              const toggleText = dropdown.querySelector(".sort-text");
-
-              items.forEach((i) => i.classList.remove("active"));
-              if (items[0]) {
-                items[0].classList.add("active");
-                toggleText.textContent = items[0].textContent.trim();
-              }
-            });
-
-            lucide.createIcons();
-          });
-        }
-
-        const recentWrapper = document.querySelector(".recent-wrapper");
-        const items = document.querySelectorAll(".recent-item .col-3");
-        const prevBtn = document.querySelector(
-          ".recent-viewed .carousel-btn.prev"
-        );
-        const nextBtn = document.querySelector(
-          ".recent-viewed .carousel-btn.next"
-        );
-
-        let currentIndex = 0;
-        const visibleCount = 4;
-
-        // 初始化：只顯示前 4 個
-        function updateVisibleItems() {
-          items.forEach((item, index) => {
-            item.style.display =
-              index >= currentIndex && index < currentIndex + visibleCount
-                ? "block"
-                : "none";
-          });
-        }
-
-        updateVisibleItems();
-
-        // 點擊左右箭頭
-        nextBtn.addEventListener("click", () => {
-          if (currentIndex + visibleCount < items.length) {
-            currentIndex++;
-            updateVisibleItems();
-          }
-        });
-
-        prevBtn.addEventListener("click", () => {
-          if (currentIndex > 0) {
-            currentIndex--;
-            updateVisibleItems();
-          }
-        });
-
-        // ========== 最近看過商品輪播（支援 RWD）==========
-
-        const recentPrevBtn = document.getElementById("recentPrev");
-        const recentNextBtn = document.getElementById("recentNext");
-
-        if (recentWrapper && recentPrevBtn && recentNextBtn) {
-          let currentIndex = 0;
-          let autoPlayInterval;
-
-          // 根據螢幕寬度決定顯示數量
-          function getVisibleCount() {
-            const width = window.innerWidth;
-            if (width <= 480) return 1;
-            if (width <= 767) return 2;
-            if (width <= 1295) return 3;
-            return 4;
-          }
-
-          // 計算最大索引
-          function getMaxIndex() {
-            const visibleCount = getVisibleCount();
-            return recentWrapper.children.length - visibleCount;
-          }
-
-          // 滾動到指定位置
-          function scrollToIndex(index) {
-            const itemWidth =
-              recentWrapper.querySelector(".recent-item").offsetWidth;
-            const gap = 24;
-            const scrollAmount = (itemWidth + gap) * index;
-
-            recentWrapper.scrollTo({
-              left: scrollAmount,
-              behavior: "smooth",
-            });
-          }
-
-          // 前一張
-          recentPrevBtn.addEventListener("click", () => {
-            if (currentIndex > 0) {
-              currentIndex--;
-              scrollToIndex(currentIndex);
-            }
-          });
-
-          // 下一張
-          recentNextBtn.addEventListener("click", () => {
-            const maxIndex = getMaxIndex();
-            if (currentIndex < maxIndex) {
-              currentIndex++;
-              scrollToIndex(currentIndex);
-            }
-          });
-
-          // 自動輪播
-          function startAutoPlay() {
-            autoPlayInterval = setInterval(() => {
-              const maxIndex = getMaxIndex();
-              if (currentIndex < maxIndex) {
-                currentIndex++;
-              } else {
-                currentIndex = 0;
-              }
-              scrollToIndex(currentIndex);
-            }, 3000);
-          }
-
-          // 停止自動輪播
-          function stopAutoPlay() {
-            clearInterval(autoPlayInterval);
-          }
-
-          // 滑鼠移入時暫停
-          recentWrapper.addEventListener("mouseenter", stopAutoPlay);
-
-          // 滑鼠移出時恢復
-          recentWrapper.addEventListener("mouseleave", startAutoPlay);
-
-          // 視窗大小改變時重置
-          window.addEventListener("resize", () => {
-            currentIndex = 0;
-            scrollToIndex(currentIndex);
-          });
-
-          // 啟動自動輪播
-          startAutoPlay();
-        }
-
-        // ========== Video Float Sticky ==========
-
-        const videoFloat = document.querySelector(".video-float");
-
-        if (videoFloat) {
-          window.addEventListener("scroll", () => {
-            if (window.scrollY > 200) {
-              videoFloat.classList.add("sticky");
-            } else {
-              videoFloat.classList.remove("sticky");
-            }
-          });
-        }
-
-        document.querySelectorAll(".more-btn").forEach((btn) => {
-          btn.addEventListener("click", (e) => {
-            const card = e.currentTarget.closest(".product-card");
-            card.classList.toggle("show-actions");
-          });
-        });
-      });
+      })
     </script>
   </body>
 </html>

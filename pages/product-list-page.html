@@ -17,10 +17,47 @@
         />
       </div>
     </section>
-    <main class="container pt-20 pb-10">
-      <div class="row">
+    <!-- <main class="container pt-20 pb-10"> -->
+
+      <main class="container pt-120 pb-160 py-md-48">
+      <div
+        class="mobile-filter-bar col-md-3 d-flex align-center justify-between py-md-48 d-md-none"
+      >
+        <div class="searching d-flex align-center justify-center">
+          <div class="search-bar col-md-3 position-relative">
+            <i data-lucide="search" class="search-icon me-md-12"></i>
+            <input type="text" class="search-input" placeholder="我要找寶物" />
+          </div>
+          <button class="button d-lg-none filter-btn d-flex align-center" data-bs- toggle="offcanvas" data-bs-target="#filterOffcanvas aria-controls="filterOffcanvas>
+                        <i class="lucide me-8" data-lucide="chevron-left"></i>
+          </button>
+          <h3 class="paragraph-body">篩選</h3>
+        </div>
+      </div>
+
+   <div class="offcanvas offcanvas-end" tabindex="-1" aria-lebelledby="offcanvasFilterLabel">
+     <div class="offcanvas-header">
+       <h5 class="offcanvas-title">篩選</h5>
+       <button type="button" class="btn-close" data-ba-dismiss="offcanvas" aria-label"Close"></button>
+     </div>
+     
+     <div class="offcanvas-body py-md-12">
+       <i class="lucide me-8" data-lucide="bookmark me-md-2.5"></i>
+       <h5 class="paragraph-body-small-md mb-13.5">狀態</h5>
+       <div class="d-flex flex-wrap gap-24 mb-8">
+         <label class="btn btn-sm">
+           <input type="checkbox" class="d-none" value="new"> 全新
+         </label>
+         
+       </div>
+        
+     </div>
+
+
+      
+      <!-- <div class="row"> -->
         <!-- options -->
-        <div class="col-3 pe-14">
+        <!-- <div class="col-3 pe-14">
           <div class="filter-option">
             <div class="d-flex option-title mb-4">
               <i class="bi bi-funnel"></i>
@@ -130,7 +167,7 @@
           <div>
             <button type="button" class="btn clear-btn">清除全部</button>
           </div>
-        </div>
+        </div> -->
 
         <!-- product-list -->
         <div class="col-9">

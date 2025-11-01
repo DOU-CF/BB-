@@ -5,35 +5,485 @@
 .card-shadow-gray {
   box-shadow: $box-shadow-gray;
 }
-.card-shadow-sm-gray{
+.card-shadow-sm-gray {
   box-shadow: $box-shadow-sm-gray;
 }
-.text-shadow{
-  text-shadow: 2px 2px 4px rgba(0,0,0,0.25)}
-.radius-10{
-    border-radius: $border-radius-md-10 !important;
+.text-shadow {
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.25);
 }
-.paragraph-body{
+.radius-10 {
+  border-radius: $border-radius-md-10 !important;
+}
+.paragraph-body {
   font-weight: 400;
   font-size: 16px;
   line-height: 1.5;
-  letter-spacing: .5px;
+  letter-spacing: 0.5px;
 }
-.paragraph-body-bold{
+.paragraph-body-bold {
   font-weight: 700;
   font-size: 16px;
   line-height: 1.5;
-  letter-spacing: .5px;
+  letter-spacing: 0.5px;
 }
-.paragraph-body-small{
+.paragraph-body-small {
   font-weight: 400;
   font-size: 14px;
   line-height: 1.5;
   letter-spacing: 0px;
 }
-.paragraph-caption{
+.paragraph-caption {
   font-weight: 400;
   font-size: 12px;
   line-height: 1.5;
   letter-spacing: 0px;
 }
+
+// scss/_components.scss
+// Component-level styles for product-list-page converted from existing CSS.
+// Mobile-first SCSS using Bootstrap mixins and variables where appropriate.
+//
+// Notes:
+// - HTML should use Bootstrap grid classes: use `col-6 col-md-2` for product cards.
+// - Keep `.product-actions` markup, add `d-none d-md-flex` to it in HTML so it shows on md+ only.
+// - Ensure this file is imported after Bootstrap (see scss/main.scss).
+
+@use "node_modules/bootstrap/scss/functions" as *;
+@use "node_modules/bootstrap/scss/variables" as bs;
+@use "node_modules/bootstrap/scss/maps" as maps;
+@use "node_modules/bootstrap/scss/mixins" as mixins;
+
+// Local design tokens (fallbacks; you can remove if you rely fully on Bootstrap variables)
+$plp-primary-500: #189ec7 !default;
+$plp-primary-400: #3faad5 !default;
+$plp-white: #ffffff !default;
+$plp-gray-600: #6c757d !default;
+$plp-gray-800: #343a40 !default;
+$plp-highlight-300: #fc7b69 !default;
+$plp-gray-50: #fafafa !default;
+$plp-gray-100: #f3f4f5 !default;
+
+// ---------------------- Global small helpers ----------------------
+.container {
+  max-width: 1320px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 12px;
+  padding-right: 12px;
+  box-sizing: border-box;
+}
+
+// Utility fallback if HTML still uses .col-4 but you can't change HTML immediately.
+// Recommended: change HTML to use `col-6 col-md-2`.
+.col-4 {
+  padding-left: 12px;
+  padding-right: 12px;
+  width: calc(100% / 12 * 4);
+  box-sizing: border-box;
+}
+
+// make col-6 explicit (used in recommended HTML)
+.col-6 {
+  padding-left: 12px;
+  padding-right: 12px;
+  width: 50%;
+  box-sizing: border-box;
+}
+
+// ---------------------- Product card ----------------------
+.product-card {
+  width: 100%;
+  border-radius: 40px 40px 0 0;
+  overflow: visible;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  margin-bottom: 48px;
+  position: relative;
+  background: transparent;
+
+  // FAVORITE BUTTON (heart)
+  .favorite-btn {
+    display: none;
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    z-index: 6;
+    width: 40px;
+    height: 40px;
+    border-radius: 20px;
+    padding: 8px;
+    background-color: rgba(0, 0, 0, 0.25);
+    border: none;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s ease, transform 0.12s ease;
+    cursor: pointer;
+
+    svg {
+      width: 20px;
+      height: 20px;
+      stroke: #fff;
+      fill: none;
+      stroke-width: 2px;
+      transition: all 0.2s ease;
+    }
+
+    &:focus {
+      outline: none;
+      box-shadow: 0 0 0 4px rgba($plp-primary-500, 0.12);
+    }
+
+    &.active {
+      background-color: rgba(255, 255, 255, 0.98);
+
+      svg {
+        fill: $plp-highlight-300;
+        stroke: #fff;
+        transform: scale(1.05);
+      }
+    }
+  } // .favorite-btn
+
+  &:hover {
+    .favorite-btn {
+      display: flex;
+    }
+    .product-image img {
+      filter: brightness(0.75);
+    }
+    .product-info h3 {
+      color: $plp-primary-400;
+    }
+  }
+
+  // PRODUCT IMAGE (mobile-first)
+  .product-image {
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+    padding-bottom: 0;
+    box-shadow: 0 4px 0 rgba(0, 0, 0, 0.1);
+    border-radius: 24px;
+    transition: all 0.3s ease;
+
+    img {
+      display: block;
+      width: 100%;
+      height: auto;
+      object-fit: contain;
+      border-radius: 24px 24px 0 0;
+      transition: filter 0.3s ease;
+      position: relative;
+    }
+
+    // BADGES placed over image (desktop use-case; hidden on mobile)
+    .badge {
+      position: absolute;
+      top: 8px;
+      left: 8px;
+      padding: 8px;
+      z-index: 2;
+      display: flex;
+      gap: 4px;
+
+      .badge-pink {
+        background-color: $plp-highlight-300;
+        color: $plp-white;
+        border-radius: 12px;
+        padding: 4px 12px;
+        font-size: 0.85rem;
+      }
+
+      .badge-blue {
+        background-color: $plp-primary-400;
+        color: $plp-white;
+        border-radius: 12px;
+        padding: 4px 12px;
+        font-size: 0.85rem;
+      }
+    } // .badge
+  } // .product-image
+
+  // ACTION BUTTONS (desktop area). HTML should include d-none d-md-flex to control visibility.
+  .product-actions {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 48px;
+    display: flex;
+    z-index: 5;
+    background-color: $plp-white;
+    box-shadow: 0 2px 0 rgba(0, 0, 0, 0.04);
+
+    .action-btn {
+      flex: 1;
+      color: $plp-gray-600;
+      border: none;
+      background-color: transparent;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+
+      &:first-child {
+        border-right: 1px solid rgba(0, 0, 0, 0.08);
+      }
+
+      &:hover {
+        background-color: mix($plp-primary-500, $plp-white, 90%);
+        color: $plp-primary-500;
+      }
+
+      svg {
+        width: 20px;
+        height: 20px;
+      }
+    }
+  } // .product-actions
+
+  // PRODUCT INFO overlay on mobile
+  .product-info {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: $plp-white;
+    border-radius: 0 0 40px 40px;
+    padding: 16px;
+    box-shadow: 0 -4px 0 rgba(0, 0, 0, 0.05);
+    z-index: 4;
+
+    .item-name {
+      color: $plp-gray-800;
+      margin-bottom: 0.5rem;
+    }
+    .shipper {
+      color: $plp-gray-600;
+      margin-bottom: 0.5rem;
+    }
+    .item-price {
+      color: $plp-primary-400;
+      font-weight: 700;
+    }
+
+    // Mobile-specific blue tag variant (white background + blue border)
+    .badge-blue--mobile {
+      color: $plp-primary-500;
+      border: 1px solid $plp-primary-500;
+      padding: 0 6px;
+      border-radius: 4px;
+      display: inline-block;
+      margin-bottom: 0.5rem;
+      background-color: $plp-white;
+      font-size: 0.85rem;
+      line-height: 1.2;
+    }
+  } // .product-info
+
+  // Mobile "more" button (⋯). Keep HTML class d-md-none on the element.
+  .more-btn {
+    display: inline-flex;
+    position: absolute;
+    right: 12px;
+    bottom: 12px;
+    width: 36px;
+    height: 36px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 18px;
+    background: transparent;
+    border: none;
+    z-index: 10;
+    cursor: pointer;
+
+    i,
+    svg {
+      width: 20px;
+      height: 20px;
+      color: $plp-gray-600;
+    }
+
+    &:hover {
+      background: rgba(0, 0, 0, 0.04);
+      transform: translateY(-1px);
+    }
+  }
+} // .product-card
+
+// ---------------------- Responsive adjustments ----------------------
+
+// Desktop: md and up -> product-info flows under image; product-image fixed height & cover
+@include mixins.media-breakpoint-up(md) {
+  .product-card {
+    .product-image {
+      height: 354px;
+      border-radius: 40px;
+
+      img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 40px 40px 0 0;
+      }
+    }
+
+    // Ensure product-actions is visible on desktop (HTML should include d-none d-md-flex)
+    .product-actions {
+      display: flex !important;
+    }
+
+    .product-info {
+      position: relative;
+      background: transparent;
+      box-shadow: none;
+      border-radius: 0;
+      padding: 12px 6px 0 6px;
+      margin-top: 12px;
+
+      // hide mobile badge version on desktop
+      .badge-blue--mobile {
+        display: none;
+      }
+    }
+  }
+} // media-breakpoint-up(md)
+
+// Mobile: below md -> overlay behavior and hide desktop-positioned badge
+@include mixins.media-breakpoint-down(md) {
+  .product-card {
+    .product-actions {
+      display: none !important;
+      height: 0 !important;
+      visibility: hidden !important;
+    }
+
+    .product-image {
+      padding-bottom: 110px;
+    } // reserve space for overlay product-info
+    .product-info {
+      padding-right: 56px;
+    } // reserve space for .more-btn
+    .product-image .badge-blue {
+      display: none !important;
+    } // hide image badge
+    .product-info .badge-blue--mobile {
+      display: inline-block;
+    }
+  }
+
+  // If HTML still uses .col-4, make it behave as 50% on mobile
+  .col-4 {
+    width: 50% !important;
+  }
+} // media-breakpoint-down(md)
+
+// ---------------------- Pagination ----------------------
+.pagination-wrapper {
+  ul {
+    gap: 12px;
+    list-style: none;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .page-btn {
+    width: 40px;
+    height: 40px;
+    color: $plp-gray-800;
+    background-color: $plp-gray-50;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+  }
+
+  .page-btn:hover {
+    background: $plp-white;
+    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.04);
+  }
+
+  .page-btn.disabled,
+  .page-btn:disabled {
+    background-color: $plp-gray-100;
+    color: bs.$gray-400;
+    cursor: not-allowed;
+  }
+
+  .page-btn.active {
+    background-color: $plp-primary-500;
+    color: $plp-white;
+  }
+}
+
+// ---------------------- Recent viewed carousel small fixes ----------------------
+.recent-viewed {
+  padding: 0;
+  background-color: $plp-gray-100;
+  overflow: hidden;
+}
+
+.recent-wrapper {
+  overflow-x: scroll;
+  scroll-behavior: smooth;
+  gap: 24px;
+  padding: 0;
+  scrollbar-width: none;
+}
+.recent-wrapper::-webkit-scrollbar {
+  display: none;
+}
+
+// ---------------------- Offcanvas / pill grid helpers ----------------------
+.offcanvas {
+  &.offcanvas-end {
+    // On mobile, use full viewport width
+    @include mixins.media-breakpoint-down(md) {
+      width: 100vw !important;
+      max-width: 100% !important;
+      right: 0 !important;
+      left: 0 !important;
+      height: 100vh;
+    }
+  }
+
+  .pill {
+    display: inline-flex;
+    color: $plp-gray-700;
+    background: $plp-gray-50;
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    border-radius: 24px;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    padding-left: 44px;
+    cursor: pointer;
+    transition: all 0.3s;
+    justify-content: flex-start;
+
+    .pill-text {
+      flex: 1;
+      text-align: left;
+    }
+  }
+
+  // Mobile: 2-column pill layout inside offcanvas
+  @include mixins.media-breakpoint-down(md) {
+    .pill {
+      width: calc(50% - 12px);
+      margin-bottom: 12px;
+    }
+  }
+} // .offcanvas
+
+// End of _components.scss
